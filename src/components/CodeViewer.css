@@ -1,0 +1,340 @@
+.cv__bar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+}
+
+.cv__bar-inner {
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.cv__back {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.cv__tools {
+    display: flex;
+    align-items: center;
+}
+
+.cv__main {
+    padding-top: clamp(40px, 6vw, 72px);
+    padding-bottom: 120px;
+}
+
+.cv__crumb {
+    color: var(--ink-3);
+}
+
+.cv__title {
+    margin-top: 12px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1;
+}
+
+.cv__desc {
+    margin-top: 20px;
+    max-width: 68ch;
+    color: var(--ink-2);
+    font-size: 1.05rem;
+}
+
+.cv__suites {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    border-bottom: 1px solid var(--line);
+}
+
+.cv__suite {
+    position: relative;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 14px;
+    color: var(--ink-3);
+    transition: color 0.2s;
+}
+
+.cv__suite::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.35s var(--ease);
+}
+
+.cv__suite:hover,
+.cv__suite.active {
+    color: var(--ink);
+}
+
+.cv__suite.active::after {
+    transform: scaleX(1);
+}
+
+.cv__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 0;
+}
+
+.cv__views {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.cv__view {
+    min-height: 40px;
+    padding: 0 16px;
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.cv__view + .cv__view {
+    border-left: 1px solid var(--line);
+}
+
+.cv__view:hover {
+    color: var(--ink);
+    background: var(--bg-2);
+}
+
+.cv__view[aria-pressed='true'] {
+    background: var(--ink);
+    color: var(--bg);
+}
+
+.cv__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+.cv__action {
+    min-height: 44px;
+    padding: 0 12px;
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    border-radius: var(--radius);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.cv__action:hover {
+    background: var(--bg-2);
+    color: var(--ink);
+}
+
+.cv__run {
+    margin-left: 8px;
+}
+
+.cv__note {
+    color: var(--ink-3);
+    margin-bottom: 12px;
+}
+
+.cv__viewport {
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    background: var(--surface);
+    min-height: 320px;
+}
+
+/* Code: syntax colors stay inside the site palette (ink shades + the accent). */
+.cv-code {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    max-height: 70vh;
+    overflow: auto;
+}
+
+.cv-code__nums {
+    padding: 20px 12px 20px 16px;
+    text-align: right;
+    color: var(--ink-3);
+    border-right: 1px solid var(--line);
+    user-select: none;
+    /* same size and line-height as the code so numbers stay aligned */
+    line-height: 1.65;
+    font-size: 0.82rem;
+    letter-spacing: 0;
+}
+
+.cv-code__src {
+    padding: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.65;
+    tab-size: 2;
+    color: var(--ink);
+}
+
+.cv-comment {
+    color: var(--ink-3);
+    font-style: italic;
+}
+
+.cv-string {
+    color: var(--accent);
+}
+
+.cv-keyword {
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: var(--line);
+    text-underline-offset: 3px;
+}
+
+.cv-number,
+.cv-decorator {
+    color: var(--ink-2);
+    font-weight: 500;
+}
+
+.cv-output__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-2);
+}
+
+.cv-output__head .is-done {
+    color: var(--accent);
+}
+
+.cv-output__body {
+    max-height: 60vh;
+    overflow: auto;
+    padding: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--ink-2);
+    white-space: pre;
+}
+
+.cv-report-loading {
+    display: grid;
+    gap: 12px;
+    place-content: center;
+    min-height: 320px;
+    padding: 24px;
+    color: var(--ink-2);
+}
+
+.cv-progress {
+    width: min(320px, 70vw);
+    height: 2px;
+    background: var(--line);
+}
+
+.cv-progress span {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    transform-origin: left;
+}
+
+.cv-report {
+    padding: 24px;
+    display: grid;
+    gap: 24px;
+}
+
+.cv-report-empty {
+    padding: 24px;
+    color: var(--ink-2);
+}
+
+.cv-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    border-top: 1px solid var(--ink);
+}
+
+.cv-stats div {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.cv-stats dt {
+    color: var(--ink-3);
+}
+
+.cv-stats dd {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    line-height: 1.1;
+}
+
+.cv-checks {
+    display: grid;
+}
+
+.cv-checks > li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.92rem;
+}
+
+.cv-checks > li > span:first-child {
+    color: var(--ink);
+}
+
+.cv-checks .mono {
+    color: var(--ink-3);
+}
+
+.cv-steps {
+    flex-basis: 100%;
+    display: grid;
+    gap: 2px;
+    padding-left: 20px;
+    color: var(--ink-2);
+    font-size: 0.85rem;
+    list-style: decimal;
+}
+
+@media (max-width: 600px) {
+    .cv__toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cv__views {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .cv__run {
+        margin-left: auto;
+    }
+}

@@ -1,0 +1,29 @@
+.footer {
+    border-top: 1px solid var(--line);
+}
+
+.footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px 24px;
+    padding-block: 20px;
+    /* leave room for the chat launcher on the right */
+    padding-right: max(var(--gutter), 200px);
+    color: var(--ink-3);
+}
+
+.footer__inner a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    color: var(--ink-2);
+}
+
+@media (max-width: 600px) {
+    .footer__inner {
+        padding-right: var(--gutter);
+        padding-bottom: 88px;
+    }
+}

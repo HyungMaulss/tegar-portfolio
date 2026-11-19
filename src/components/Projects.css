@@ -1,0 +1,121 @@
+.projects {
+    padding: clamp(64px, 9vw, 120px) 0 clamp(80px, 12vw, 160px);
+}
+
+.plist {
+    border-top: 1px solid var(--ink);
+    counter-reset: p;
+}
+
+.plist__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr) minmax(0, 300px);
+    gap: 24px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+    isolation: isolate;
+}
+
+.plist__item::before {
+    content: '';
+    position: absolute;
+    inset: 0 calc(var(--gutter) * -0.5);
+    z-index: -1;
+    background: var(--bg-2);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.45s var(--ease);
+}
+
+.plist__item.has-source:hover::before,
+.plist__item.has-source:focus-within::before {
+    transform: scaleY(1);
+}
+
+.plist__num {
+    color: var(--ink-3);
+    padding-top: 10px;
+    transition: color 0.3s;
+}
+
+.plist__item:hover .plist__num {
+    color: var(--accent);
+}
+
+.plist__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    line-height: 1.05;
+    /* Margin, not transform: a transform would trap the stretched link overlay inside the title. */
+    transition: margin-left 0.45s var(--ease);
+}
+
+.plist__item.has-source:hover .plist__title {
+    margin-left: 10px;
+}
+
+/* Stretch the title link over the whole row so the row is one big target. */
+.plist__link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+
+.plist__link:focus-visible {
+    outline: none;
+}
+
+.plist__item:has(.plist__link:focus-visible) {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.plist__desc {
+    margin-top: 12px;
+    max-width: 58ch;
+    color: var(--ink-2);
+}
+
+.plist__side {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+    padding-top: 8px;
+}
+
+.plist__type {
+    color: var(--ink-3);
+}
+
+.plist__cta {
+    color: var(--accent);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s, transform 0.4s var(--ease);
+}
+
+.plist__item:hover .plist__cta,
+.plist__item:focus-within .plist__cta {
+    opacity: 1;
+    transform: none;
+}
+
+@media (hover: none) {
+    .plist__cta {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (max-width: 820px) {
+    .plist__item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .plist__num {
+        padding: 0;
+    }
+}

@@ -1,0 +1,239 @@
+/* The only rounded, shadowed element: it floats above the page, so it gets elevation. */
+.chat-launcher {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 60;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 0 18px 0 8px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--bg);
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    transition: transform 0.3s var(--ease), background-color 0.3s;
+}
+
+.chat-launcher:hover {
+    transform: translateY(-2px);
+    background: var(--accent);
+    color: var(--accent-ink);
+}
+
+.chat-launcher__mark {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: 0.95rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.chat-launcher:hover .chat-launcher__mark {
+    background: var(--accent-ink);
+    color: var(--accent);
+}
+
+.chat {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    z-index: 60;
+    width: min(400px, calc(100vw - 40px));
+    height: min(600px, calc(100svh - 120px));
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+}
+
+.chat__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 12px 12px 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+.chat__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.1;
+}
+
+.chat__scope {
+    color: var(--ink-3);
+    margin-top: 4px;
+}
+
+.chat__head .toggle {
+    font-size: 1.4rem;
+}
+
+.chat__log {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overscroll-behavior: contain;
+}
+
+.chat__msg {
+    max-width: 88%;
+    padding: 10px 14px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    border-radius: var(--radius);
+}
+
+.chat__line {
+    display: block;
+    min-height: 0.6em;
+}
+
+.chat__msg.is-bot {
+    align-self: flex-start;
+    background: var(--bg-2);
+}
+
+.chat__msg.is-user {
+    align-self: flex-end;
+    background: var(--ink);
+    color: var(--bg);
+}
+
+.chat__typing {
+    display: inline-flex;
+    gap: 4px;
+    padding: 14px;
+}
+
+.chat__typing span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ink-3);
+    animation: chat-dot 1s infinite ease-in-out;
+}
+
+.chat__typing span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.chat__typing span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes chat-dot {
+    0%, 100% { opacity: 0.3; transform: none; }
+    50% { opacity: 1; transform: translateY(-3px); }
+}
+
+.chat__suggest {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px 20px;
+    border-top: 1px solid var(--line);
+}
+
+.chat__chip {
+    flex: none;
+    min-height: 36px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-size: 0.8rem;
+    color: var(--ink-2);
+    transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+}
+
+.chat__chip:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.chat__chip:disabled {
+    opacity: 0.5;
+}
+
+.chat__form {
+    padding: 10px 20px 16px;
+}
+
+.chat__label {
+    display: block;
+    color: var(--ink-3);
+    margin-bottom: 6px;
+}
+
+.chat__row {
+    display: flex;
+    gap: 8px;
+}
+
+.chat__row input {
+    flex: 1;
+    min-width: 0;
+    min-height: 48px;
+    padding: 0 12px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-size: 16px; /* prevents iOS zoom on focus */
+}
+
+.chat__row input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 0;
+    border-color: transparent;
+}
+
+.chat__send {
+    padding: 0 16px;
+}
+
+.chat__send:disabled {
+    opacity: 0.45;
+}
+
+.chat__send:disabled::before {
+    display: none;
+}
+
+@media (max-width: 520px) {
+    .chat {
+        right: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: min(85svh, 640px);
+        border-inline: 0;
+        border-bottom: 0;
+    }
+
+    .chat-launcher.is-open {
+        display: none;
+    }
+
+    /* one swipeable row so the conversation keeps most of the screen */
+    .chat__suggest {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+}

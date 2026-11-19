@@ -1,0 +1,40 @@
+.toggle {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: var(--radius);
+    color: var(--ink-2);
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.toggle:hover {
+    color: var(--ink);
+    background: var(--bg-2);
+}
+
+.lang-switch {
+    display: inline-flex;
+}
+
+.lang-switch .toggle[aria-pressed='true'] {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+}
+
+/* Half-filled disc: rotates 180deg between themes so the change is visible, not just a color swap. */
+.theme-toggle__icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid currentColor;
+    background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+    transition: transform 0.5s var(--ease);
+}
+
+.theme-toggle__icon[data-theme='dark'] {
+    transform: rotate(180deg);
+}
