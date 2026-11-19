@@ -1,48 +1,44 @@
 /*
   Design decisions (one line each):
-  - Palette: warm paper/ink neutrals so content leads; one accent, "pass green", because a passing test is the QA signal.
-  - Instrument Serif for display: an editorial voice that breaks the default "tech portfolio" sans look.
-  - IBM Plex Sans for body: engineered for technical documentation, very legible at small sizes.
-  - IBM Plex Mono only for small labels (test-report motif), never for headings.
-  - Motif: the DevTools inspector (dashed outline + element tag) on hover, because inspecting is what a tester does.
-  - Radius: 2px almost everywhere; only the chat launcher is rounded so it reads as a floating control.
+  - Three tones only, all taken from the logo: charcoal ink, teal check, warm paper. Shades of those, nothing else.
+  - Bright teal is decoration (check strokes, buttons with ink text); text in teal uses a darker shade for contrast.
+  - Plus Jakarta Sans: geometric like the logo wordmark but with soft terminals, so the page feels relaxed, not rigid.
+  - Caveat appears once (the hero note) as a human touch; it is never used for content.
+  - Motif: the teal check from the logo, drawn as a stroke under key words.
+  - Radius: pill for buttons, 24px for cards, so controls and surfaces read differently.
 */
 :root {
-  --bg: #f4f3ee;
-  --bg-2: #eae8e0;
-  --surface: #fbfaf7;
-  --ink: #151614;
-  --ink-2: #44463f;
-  --ink-3: #64665f;
-  --line: #d6d4cb;
-  --accent: #1c6a44;
-  --accent-ink: #ffffff;
-  --accent-soft: rgba(28, 106, 68, 0.1);
+  --paper: #f6f4ef;
+  --paper-2: #ebe8e0;
+  --ink: #1c2427;
+  --ink-2: #5b6366;
+  --line: #dcd8ce;
+  --teal: #03b3aa;
+  --teal-ink: #0a7670;
+  --teal-soft: #d9ece7;
 
-  --font-display: 'Instrument Serif', 'Times New Roman', serif;
-  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-hand: 'Caveat', cursive;
+  --font-code: ui-monospace, 'Cascadia Code', Consolas, monospace;
 
-  --gutter: clamp(16px, 4vw, 40px);
-  --max: 1160px;
-  --nav-h: 64px;
-  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
-  --radius: 2px;
+  --gutter: clamp(20px, 5vw, 56px);
+  --max: 1180px;
+  --nav-h: 76px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --r-card: 24px;
 
   color-scheme: light;
 }
 
 :root[data-theme='dark'] {
-  --bg: #0e0f0d;
-  --bg-2: #181a17;
-  --surface: #141513;
-  --ink: #ecebe5;
-  --ink-2: #b9bab2;
-  --ink-3: #8e9088;
-  --line: #2b2d29;
-  --accent: #5fd394;
-  --accent-ink: #0e0f0d;
-  --accent-soft: rgba(95, 211, 148, 0.12);
+  --paper: #131a1c;
+  --paper-2: #1c2528;
+  --ink: #f3f1ec;
+  --ink-2: #a7aeb0;
+  --line: #2a3437;
+  --teal: #2fc4b9;
+  --teal-ink: #2fc4b9;
+  --teal-soft: #17302f;
   color-scheme: dark;
 }
 
@@ -56,25 +52,25 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-h) + 16px);
+  scroll-padding-top: var(--nav-h);
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.65;
   color: var(--ink);
-  background: var(--bg);
+  background: var(--paper);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+  transition: background-color 0.4s var(--ease), color 0.4s var(--ease);
 }
 
-img {
+img,
+svg {
   display: block;
   max-width: 100%;
-  height: auto;
 }
 
 ul,
@@ -110,19 +106,14 @@ button:disabled {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--teal-ink);
   outline-offset: 3px;
+  border-radius: 6px;
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--accent-ink);
-}
-
-.mono {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.02em;
+  background: var(--teal);
+  color: #1c2427;
 }
 
 .visually-hidden {
@@ -139,9 +130,10 @@ button:disabled {
   left: 16px;
   top: -100px;
   z-index: 200;
-  padding: 10px 14px;
+  padding: 10px 16px;
+  border-radius: 999px;
   background: var(--ink);
-  color: var(--bg);
+  color: var(--paper);
 }
 
 .skip-link:focus {
@@ -155,160 +147,125 @@ button:disabled {
   padding-inline: var(--gutter);
 }
 
-/* ---------- Section header: "02 / experience" label, drawn rule, serif title ---------- */
-.section-head {
-  margin-bottom: clamp(32px, 5vw, 56px);
+.section {
+  padding-block: clamp(96px, 13vw, 168px);
 }
 
-.section-head__bar {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  color: var(--ink-3);
-  padding-bottom: 12px;
+/* Section heading: a quiet label and a large, relaxed title. */
+.heading {
+  margin-bottom: clamp(40px, 6vw, 72px);
 }
 
-.section-head__index {
-  color: var(--accent);
+.heading__label {
+  display: block;
+  color: var(--teal-ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 14px;
 }
 
-.section-head__rule {
-  height: 1px;
-  background: var(--ink);
-  transform-origin: left;
+.heading__title {
+  font-size: clamp(2.1rem, 4.6vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  max-width: 17ch;
 }
 
-.section-head__title {
-  margin-top: 20px;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(2.25rem, 5.5vw, 4rem);
-  line-height: 1.02;
-  letter-spacing: -0.01em;
-  max-width: 18ch;
+/* Logo: ink follows currentColor, the check keeps the brand teal. */
+.logo__check {
+  fill: var(--teal);
 }
 
-/* ---------- Buttons ---------- */
+/* Logo check motif drawn under a word. */
+.check {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.check svg {
+  position: absolute;
+  left: -2%;
+  bottom: -0.18em;
+  width: 104%;
+  height: 0.42em;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.check path {
+  fill: none;
+  stroke: var(--teal);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Buttons */
 .btn {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  min-height: 48px;
-  padding: 0 22px;
-  border: 1px solid var(--ink);
-  border-radius: var(--radius);
-  font-weight: 500;
-  font-size: 0.95rem;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 999px;
+  border: 1.5px solid var(--ink);
+  font-weight: 600;
+  font-size: 0.98rem;
   overflow: hidden;
   isolation: isolate;
-  transition: color 0.35s var(--ease), border-color 0.35s var(--ease), transform 0.15s;
+  transition: color 0.4s var(--ease), border-color 0.4s var(--ease), transform 0.3s var(--ease);
 }
 
-/* Fill wipes in from the left on hover: a clear, non-color-only hover state. */
 .btn::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.45s var(--ease);
-}
-
-.btn:hover::before {
-  transform: scaleX(1);
-  transform-origin: left;
+  border-radius: inherit;
+  background: var(--teal);
+  transform: translateY(101%);
+  transition: transform 0.5s var(--ease);
 }
 
 .btn:hover {
-  border-color: var(--accent);
-  color: var(--accent-ink);
+  color: #1c2427;
+  border-color: var(--teal);
+  transform: translateY(-2px);
+}
+
+.btn:hover::before {
+  transform: translateY(0);
 }
 
 .btn:active {
-  transform: translateY(1px);
+  transform: translateY(0);
 }
 
 .btn--solid {
   background: var(--ink);
-  color: var(--bg);
+  color: var(--paper);
 }
 
-/* Underline that draws from the left on hover. */
+/* Text link with an underline that grows from the left. */
 .link {
-  background: linear-gradient(currentColor, currentColor) left bottom / 0 1px no-repeat;
-  transition: background-size 0.4s var(--ease), color 0.2s;
+  background: linear-gradient(currentColor, currentColor) left 100% / 0 1.5px no-repeat;
+  transition: background-size 0.45s var(--ease), color 0.2s;
   padding-bottom: 2px;
 }
 
 .link:hover {
-  background-size: 100% 1px;
-  color: var(--accent);
+  background-size: 100% 1.5px;
 }
 
-.tag {
-  display: inline-block;
-  padding: 3px 8px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--ink-2);
-  white-space: nowrap;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-/* ---------- Inspector overlay (desktop pointers only) ---------- */
-.inspector {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 90;
-  pointer-events: none;
-  border: 1px dashed var(--accent);
-  background: var(--accent-soft);
-  transition: transform 0.22s var(--ease), width 0.22s var(--ease), height 0.22s var(--ease), opacity 0.2s;
-}
-
-.inspector__tag {
-  position: absolute;
-  left: -1px;
-  bottom: 100%;
-  margin-bottom: 4px;
-  padding: 2px 6px;
-  background: var(--accent);
-  color: var(--accent-ink);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  white-space: nowrap;
-  border-radius: var(--radius);
-}
-
-.inspector__tag span {
-  opacity: 0.75;
-  margin-left: 6px;
-}
-
-@media (hover: none), (pointer: coarse) {
-  .inspector {
-    display: none;
-  }
-}
-
-/* ---------- Route fallback ---------- */
 .route-loading {
   min-height: 60vh;
   display: grid;
   place-items: center;
-  color: var(--ink-3);
+  color: var(--ink-2);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { profile } from '../data/profile';
-import SectionHeader from './SectionHeader';
+import Check from './Check';
 import './Contact.css';
 
 export default function Contact() {
     const { t } = useLanguage();
     const [status, setStatus] = useState('idle'); // idle | copied | failed
+    const [lead, key] = t.contact.title;
 
     const copy = async () => {
         try {
@@ -26,48 +27,36 @@ export default function Contact() {
     ];
 
     return (
-        <section className="contact" id="contact">
-            <div className="container">
-                <SectionHeader index="05" label={t.contact.label} title={t.contact.title} />
+        <section className="contact section" id="contact">
+            <motion.div
+                className="contact__panel container"
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+                <span className="heading__label">{t.contact.label}</span>
+                <h2 className="contact__title">{lead} <Check>{key}</Check></h2>
                 <p className="contact__body">{t.contact.body}</p>
 
-                <motion.div
-                    className="contact__mail"
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                >
-                    <a href={`mailto:${profile.email}`} className="contact__email" data-inspect="a.mailto">
-                        {profile.email}
-                    </a>
-                    <div className="contact__copy">
-                        <button type="button" className="btn" onClick={copy}>
-                            {status === 'copied' ? `✓ ${t.contact.copied}` : t.contact.copy}
-                        </button>
-                        <p className="contact__status mono" role="status">
-                            {status === 'failed' ? t.contact.copyFailed : ''}
-                        </p>
-                    </div>
-                </motion.div>
+                <a href={`mailto:${profile.email}`} className="contact__email">{profile.email}</a>
+
+                <div className="contact__actions">
+                    <button type="button" className="btn btn--solid" onClick={copy}>
+                        {status === 'copied' ? t.contact.copied : t.contact.copy}
+                    </button>
+                    <a href={profile.cv} download className="btn">{t.contact.cv}</a>
+                </div>
+                <p className="contact__status" role="status">{status === 'failed' ? t.contact.copyFailed : ''}</p>
 
                 <ul className="contact__links">
                     {links.map(([label, href]) => (
                         <li key={label}>
-                            <a href={href} target="_blank" rel="noopener noreferrer" className="contact__link" data-inspect="a.external">
-                                <span>{label}</span>
-                                <span className="contact__arrow" aria-hidden="true">↗</span>
-                            </a>
+                            <a href={href} target="_blank" rel="noopener noreferrer" className="link">{label}</a>
                         </li>
                     ))}
-                    <li>
-                        <a href={profile.cv} download className="contact__link" data-inspect="a.download">
-                            <span>{t.contact.cv}</span>
-                            <span className="contact__arrow" aria-hidden="true">↓</span>
-                        </a>
-                    </li>
                 </ul>
-            </div>
+            </motion.div>
         </section>
     );
 }

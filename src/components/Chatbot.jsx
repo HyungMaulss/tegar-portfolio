@@ -68,8 +68,7 @@ export default function Chatbot() {
                 aria-controls="chat-panel"
                 onClick={() => setOpen((o) => !o)}
             >
-                <span className="chat-launcher__mark mono" aria-hidden="true">{open ? '×' : '?'}</span>
-                <span>{open ? c.close : c.launcher}</span>
+                {open ? c.close : c.launcher}
             </button>
 
             <AnimatePresence>
@@ -87,10 +86,10 @@ export default function Chatbot() {
                         <header className="chat__head">
                             <div>
                                 <h2 className="chat__title">{c.title}</h2>
-                                <p className="chat__scope mono">{c.scope}</p>
+                                <p className="chat__scope">{c.scope}</p>
                             </div>
-                            <button type="button" className="toggle" aria-label={c.close} onClick={() => { setOpen(false); launcherRef.current?.focus(); }}>
-                                <span aria-hidden="true">×</span>
+                            <button type="button" className="chat__close" aria-label={c.close} onClick={() => { setOpen(false); launcherRef.current?.focus(); }}>
+                                {t.nav.close}
                             </button>
                         </header>
 
@@ -115,7 +114,7 @@ export default function Chatbot() {
                         </div>
 
                         <form className="chat__form" onSubmit={(e) => { e.preventDefault(); ask(input); }}>
-                            <label htmlFor="chat-input" className="chat__label mono">{c.label}</label>
+                            <label htmlFor="chat-input" className="chat__label">{c.label}</label>
                             <div className="chat__row">
                                 <input
                                     id="chat-input"

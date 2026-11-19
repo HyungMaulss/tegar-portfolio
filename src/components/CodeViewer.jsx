@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { getCodeSnippets } from '../data/codeSnippets.jsx';
 import { sourceIds } from '../data/profile';
 import { ThemeToggle, LanguageSwitch } from './Toggles';
+import Logo from './Logo';
 import './CodeViewer.css';
 
 const JS_KW = 'import|from|export|default|const|let|var|function|return|if|else|class|new|async|await|describe|it|test|beforeEach|expect|require|this|throw|try|catch|typeof|for|while|of|in|null|undefined|true|false';
@@ -191,7 +192,7 @@ export default function CodeViewer({ codeType, onBack }) {
         <div className="cv">
             <header className="cv__bar">
                 <div className="container cv__bar-inner">
-                    <Link to="/" className="cv__back link" onClick={(e) => { e.preventDefault(); onBack(); }}>← {cv.back}</Link>
+                    <Link to="/" className="cv__back link" onClick={(e) => { e.preventDefault(); onBack(); }}><Logo variant="mark" className="cv__logo" /><span>{cv.back}</span></Link>
                     <div className="cv__tools">
                         <LanguageSwitch />
                         <ThemeToggle />
@@ -221,7 +222,7 @@ export default function CodeViewer({ codeType, onBack }) {
                     <div className="cv__actions">
                         <button type="button" className="cv__action" onClick={copy}>{copied ? `✓ ${cv.copied}` : cv.copy}</button>
                         <button type="button" className="cv__action" onClick={download}>{cv.download}</button>
-                        <button type="button" className="btn btn--solid cv__run" onClick={runTest}>▶ {cv.run}</button>
+                        <button type="button" className="btn btn--solid cv__run" onClick={runTest}>{cv.run}</button>
                     </div>
                 </div>
 

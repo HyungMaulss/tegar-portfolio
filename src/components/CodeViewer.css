@@ -2,7 +2,7 @@
     position: sticky;
     top: 0;
     z-index: 40;
-    background: var(--bg);
+    background: var(--paper);
     border-bottom: 1px solid var(--line);
 }
 
@@ -32,12 +32,12 @@
 }
 
 .cv__crumb {
-    color: var(--ink-3);
+    color: var(--ink-2);
 }
 
 .cv__title {
     margin-top: 12px;
-    font-family: var(--font-display);
+    font-family: var(--font);
     font-weight: 400;
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     line-height: 1;
@@ -63,7 +63,7 @@
     display: inline-flex;
     align-items: center;
     padding: 0 14px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     transition: color 0.2s;
 }
 
@@ -74,7 +74,7 @@
     right: 0;
     bottom: -1px;
     height: 2px;
-    background: var(--accent);
+    background: var(--teal-ink);
     transform: scaleX(0);
     transition: transform 0.35s var(--ease);
 }
@@ -100,7 +100,7 @@
 .cv__views {
     display: inline-flex;
     border: 1px solid var(--line);
-    border-radius: var(--radius);
+    border-radius: 14px;
 }
 
 .cv__view {
@@ -117,12 +117,12 @@
 
 .cv__view:hover {
     color: var(--ink);
-    background: var(--bg-2);
+    background: var(--paper-2);
 }
 
 .cv__view[aria-pressed='true'] {
     background: var(--ink);
-    color: var(--bg);
+    color: var(--paper);
 }
 
 .cv__actions {
@@ -137,12 +137,12 @@
     padding: 0 12px;
     font-size: 0.9rem;
     color: var(--ink-2);
-    border-radius: var(--radius);
+    border-radius: 14px;
     transition: background-color 0.2s, color 0.2s;
 }
 
 .cv__action:hover {
-    background: var(--bg-2);
+    background: var(--paper-2);
     color: var(--ink);
 }
 
@@ -151,14 +151,14 @@
 }
 
 .cv__note {
-    color: var(--ink-3);
+    color: var(--ink-2);
     margin-bottom: 12px;
 }
 
 .cv__viewport {
     border: 1px solid var(--ink);
-    border-radius: var(--radius);
-    background: var(--surface);
+    border-radius: 14px;
+    background: var(--paper);
     min-height: 320px;
 }
 
@@ -173,7 +173,7 @@
 .cv-code__nums {
     padding: 20px 12px 20px 16px;
     text-align: right;
-    color: var(--ink-3);
+    color: var(--ink-2);
     border-right: 1px solid var(--line);
     user-select: none;
     /* same size and line-height as the code so numbers stay aligned */
@@ -184,7 +184,7 @@
 
 .cv-code__src {
     padding: 20px;
-    font-family: var(--font-mono);
+    font-family: var(--font-code);
     font-size: 0.82rem;
     line-height: 1.65;
     tab-size: 2;
@@ -192,12 +192,12 @@
 }
 
 .cv-comment {
-    color: var(--ink-3);
+    color: var(--ink-2);
     font-style: italic;
 }
 
 .cv-string {
-    color: var(--accent);
+    color: var(--teal-ink);
 }
 
 .cv-keyword {
@@ -223,14 +223,14 @@
 }
 
 .cv-output__head .is-done {
-    color: var(--accent);
+    color: var(--teal-ink);
 }
 
 .cv-output__body {
     max-height: 60vh;
     overflow: auto;
     padding: 20px;
-    font-family: var(--font-mono);
+    font-family: var(--font-code);
     font-size: 0.8rem;
     line-height: 1.6;
     color: var(--ink-2);
@@ -255,7 +255,7 @@
 .cv-progress span {
     display: block;
     height: 100%;
-    background: var(--accent);
+    background: var(--teal-ink);
     transform-origin: left;
 }
 
@@ -282,11 +282,11 @@
 }
 
 .cv-stats dt {
-    color: var(--ink-3);
+    color: var(--ink-2);
 }
 
 .cv-stats dd {
-    font-family: var(--font-display);
+    font-family: var(--font);
     font-size: 2rem;
     line-height: 1.1;
 }
@@ -310,7 +310,7 @@
 }
 
 .cv-checks .mono {
-    color: var(--ink-3);
+    color: var(--ink-2);
 }
 
 .cv-steps {
@@ -337,4 +337,54 @@
     .cv__run {
         margin-left: auto;
     }
+}
+
+/* Filenames and report labels are code, so they use the code font; nothing else on the site does. */
+.cv .mono {
+    font-family: var(--font-code);
+    font-size: 0.8rem;
+}
+
+.cv__title {
+    font-weight: 800;
+    letter-spacing: -0.045em;
+}
+
+.cv__viewport {
+    border-color: var(--line);
+    border-radius: var(--r-card);
+    overflow: hidden;
+}
+
+.cv__views {
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.cv__action {
+    border-radius: 999px;
+}
+
+.cv-stats dd {
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.cv__back {
+    gap: 12px;
+    background: none;
+}
+
+.cv__back span {
+    background: linear-gradient(currentColor, currentColor) left 100% / 0 1.5px no-repeat;
+    transition: background-size 0.45s var(--ease);
+}
+
+.cv__back:hover span {
+    background-size: 100% 1.5px;
+}
+
+.cv__logo {
+    height: 28px;
+    width: auto;
 }

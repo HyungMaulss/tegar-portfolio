@@ -29,7 +29,7 @@ export function LanguageSwitch() {
                 <button
                     key={code}
                     type="button"
-                    className="toggle mono"
+                    className="toggle"
                     aria-pressed={language === code}
                     onClick={() => setLanguage(code)}
                 >

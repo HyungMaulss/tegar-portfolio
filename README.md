@@ -1,6 +1,6 @@
 # Tegar Maulana · QA Engineer portfolio
 
-React 19 + Vite. Light/dark theme, EN/ID copy, a portfolio-only chat assistant, and a code viewer for the test framework samples.
+React 19 + Vite. Three-tone palette from the logo, light/dark theme, EN/ID copy, a portfolio-only chat assistant, and a code viewer for the test framework samples.
 
 ## Scripts
 
@@ -22,7 +22,7 @@ src/
   lib/
     chatbot.js       closed-domain intent matcher: answers are built only from the data above
     chatbot.test.js  intent + off-topic refusal tests
-  components/        one component + one CSS file per section
+  components/        one component + one CSS file per section (Logo.jsx is the traced brand logo)
   context/           language provider (persists choice in localStorage)
   index.css          design tokens (light/dark), base styles, shared pieces
 ```

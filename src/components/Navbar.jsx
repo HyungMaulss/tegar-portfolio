@@ -2,9 +2,15 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { profile } from '../data/profile';
 import { ThemeToggle, LanguageSwitch } from './Toggles';
+import Logo from './Logo';
 import './Navbar.css';
 
-const SECTIONS = ['about', 'experience', 'projects', 'skills', 'contact'];
+const LINKS = [
+    ['about', 'about'],
+    ['experience', 'experience'],
+    ['work', 'projects'],
+    ['contact', 'contact'],
+];
 
 export default function Navbar() {
     const { t } = useLanguage();
@@ -13,16 +19,14 @@ export default function Navbar() {
     const [active, setActive] = useState('');
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 24);
+        const onScroll = () => setScrolled(window.scrollY > 12);
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
-
-        // Active link = the section crossing the upper third of the viewport.
         const io = new IntersectionObserver(
             (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
-            { rootMargin: '-30% 0px -65% 0px' },
+            { rootMargin: '-35% 0px -60% 0px' },
         );
-        SECTIONS.forEach((id) => document.getElementById(id) && io.observe(document.getElementById(id)));
+        LINKS.forEach(([, id]) => { const el = document.getElementById(id); if (el) io.observe(el); });
         return () => {
             window.removeEventListener('scroll', onScroll);
             io.disconnect();
@@ -33,48 +37,48 @@ export default function Navbar() {
         if (!open) return;
         const onKey = (e) => e.key === 'Escape' && setOpen(false);
         document.addEventListener('keydown', onKey);
-        return () => document.removeEventListener('keydown', onKey);
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.removeEventListener('keydown', onKey);
+            document.body.style.overflow = '';
+        };
     }, [open]);
 
+    const close = () => setOpen(false);
+
     return (
-        <header className={`nav ${scrolled ? 'nav--scrolled' : ''} ${open ? 'nav--open' : ''}`}>
+        <header className={`nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
             <nav className="nav__inner container" aria-label="Primary">
-                <a href="#top" className="nav__mark" aria-label={t.nav.home} onClick={() => setOpen(false)}>
-                    TM<span aria-hidden="true">.</span>
+                <a href="#top" className="nav__logo" aria-label={t.nav.home} onClick={close}>
+                    <Logo />
                 </a>
 
-                <ul id="nav-menu" className="nav__links">
-                    {SECTIONS.map((id, i) => (
-                        <li key={id}>
-                            <a
-                                href={`#${id}`}
-                                className="nav__link"
-                                aria-current={active === id ? 'location' : undefined}
-                                onClick={() => setOpen(false)}
-                            >
-                                <span className="nav__num mono" aria-hidden="true">0{i + 1}</span>
-                                {t.nav[id]}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-
-                <div className="nav__tools">
-                    <a href={profile.cv} download className="nav__cv link">{t.nav.cv}</a>
-                    <LanguageSwitch />
-                    <ThemeToggle />
-                    <button
-                        type="button"
-                        className="nav__burger toggle"
-                        aria-expanded={open}
-                        aria-controls="nav-menu"
-                        aria-label={open ? t.nav.close : t.nav.menu}
-                        onClick={() => setOpen((o) => !o)}
-                    >
-                        <span aria-hidden="true" />
-                        <span aria-hidden="true" />
-                    </button>
+                <div id="nav-menu" className="nav__menu">
+                    <ul className="nav__links">
+                        {LINKS.map(([key, id]) => (
+                            <li key={id}>
+                                <a href={`#${id}`} className="nav__link" aria-current={active === id ? 'location' : undefined} onClick={close}>
+                                    {t.nav[key]}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="nav__tools">
+                        <LanguageSwitch />
+                        <ThemeToggle />
+                        <a href={profile.cv} download className="btn nav__cv">{t.nav.cv}</a>
+                    </div>
                 </div>
+
+                <button
+                    type="button"
+                    className="nav__toggle"
+                    aria-expanded={open}
+                    aria-controls="nav-menu"
+                    onClick={() => setOpen((o) => !o)}
+                >
+                    {open ? t.nav.close : t.nav.menu}
+                </button>
             </nav>
         </header>
     );

@@ -1,59 +1,40 @@
-/* The only rounded, shadowed element: it floats above the page, so it gets elevation. */
+/* The only floating element, so it is the only one with a shadow. */
 .chat-launcher {
     position: fixed;
     right: 20px;
     bottom: 20px;
     z-index: 60;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    min-height: 48px;
-    padding: 0 18px 0 8px;
+    min-height: 52px;
+    padding: 0 24px;
     border-radius: 999px;
     background: var(--ink);
-    color: var(--bg);
-    font-size: 0.9rem;
-    font-weight: 500;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-    transition: transform 0.3s var(--ease), background-color 0.3s;
+    color: var(--paper);
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 10px 30px rgba(28, 36, 39, 0.2);
+    transition: translate 0.4s var(--ease), background-color 0.3s, color 0.3s;
 }
 
 .chat-launcher:hover {
-    transform: translateY(-2px);
-    background: var(--accent);
-    color: var(--accent-ink);
-}
-
-.chat-launcher__mark {
-    width: 32px;
-    height: 32px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--accent);
-    color: var(--accent-ink);
-    font-size: 0.95rem;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.chat-launcher:hover .chat-launcher__mark {
-    background: var(--accent-ink);
-    color: var(--accent);
+    translate: 0 -3px;
+    background: var(--teal);
+    color: #1c2427;
 }
 
 .chat {
     position: fixed;
     right: 20px;
-    bottom: 80px;
+    bottom: 84px;
     z-index: 60;
     width: min(400px, calc(100vw - 40px));
     height: min(600px, calc(100svh - 120px));
     display: flex;
     flex-direction: column;
-    background: var(--surface);
-    border: 1px solid var(--ink);
-    border-radius: var(--radius);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--r-card);
+    box-shadow: 0 24px 60px rgba(28, 36, 39, 0.18);
 }
 
 .chat__head {
@@ -61,30 +42,41 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 12px;
-    padding: 16px 12px 12px 20px;
+    padding: 20px 16px 16px 24px;
     border-bottom: 1px solid var(--line);
 }
 
 .chat__title {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: 1.6rem;
-    line-height: 1.1;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
 .chat__scope {
-    color: var(--ink-3);
-    margin-top: 4px;
+    color: var(--ink-2);
+    font-size: 0.85rem;
+    margin-top: 2px;
 }
 
-.chat__head .toggle {
-    font-size: 1.4rem;
+.chat__close {
+    min-height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-2);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.chat__close:hover {
+    background: var(--paper-2);
+    color: var(--ink);
 }
 
 .chat__log {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
+    padding: 20px 24px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -93,10 +85,10 @@
 
 .chat__msg {
     max-width: 88%;
-    padding: 10px 14px;
-    font-size: 0.92rem;
-    line-height: 1.5;
-    border-radius: var(--radius);
+    padding: 12px 16px;
+    font-size: 0.93rem;
+    line-height: 1.55;
+    border-radius: 18px;
 }
 
 .chat__line {
@@ -106,26 +98,28 @@
 
 .chat__msg.is-bot {
     align-self: flex-start;
-    background: var(--bg-2);
+    background: var(--paper-2);
+    border-bottom-left-radius: 6px;
 }
 
 .chat__msg.is-user {
     align-self: flex-end;
     background: var(--ink);
-    color: var(--bg);
+    color: var(--paper);
+    border-bottom-right-radius: 6px;
 }
 
 .chat__typing {
     display: inline-flex;
-    gap: 4px;
-    padding: 14px;
+    gap: 5px;
+    padding: 16px;
 }
 
 .chat__typing span {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--ink-3);
+    background: var(--ink-2);
     animation: chat-dot 1s infinite ease-in-out;
 }
 
@@ -146,25 +140,26 @@
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-top: 1px solid var(--line);
 }
 
 .chat__chip {
     flex: none;
     min-height: 36px;
-    padding: 0 12px;
+    padding: 0 14px;
+    border-radius: 999px;
     border: 1px solid var(--line);
-    border-radius: var(--radius);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
+    font-weight: 500;
     color: var(--ink-2);
     transition: border-color 0.2s, color 0.2s, background-color 0.2s;
 }
 
 .chat__chip:hover:not(:disabled) {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: var(--accent-soft);
+    border-color: var(--teal);
+    background: var(--teal-soft);
+    color: var(--ink);
 }
 
 .chat__chip:disabled {
@@ -172,12 +167,13 @@
 }
 
 .chat__form {
-    padding: 10px 20px 16px;
+    padding: 4px 24px 20px;
 }
 
 .chat__label {
     display: block;
-    color: var(--ink-3);
+    font-size: 0.8rem;
+    color: var(--ink-2);
     margin-bottom: 6px;
 }
 
@@ -190,25 +186,26 @@
     flex: 1;
     min-width: 0;
     min-height: 48px;
-    padding: 0 12px;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
+    padding: 0 16px;
+    background: var(--paper-2);
+    border: 1px solid transparent;
+    border-radius: 14px;
     font-size: 16px; /* prevents iOS zoom on focus */
 }
 
 .chat__row input:focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--teal-ink);
     outline-offset: 0;
-    border-color: transparent;
 }
 
 .chat__send {
-    padding: 0 16px;
+    min-height: 48px;
+    padding: 0 20px;
 }
 
 .chat__send:disabled {
-    opacity: 0.45;
+    opacity: 0.4;
+    transform: none;
 }
 
 .chat__send:disabled::before {
@@ -217,12 +214,10 @@
 
 @media (max-width: 520px) {
     .chat {
-        right: 0;
-        left: 0;
-        bottom: 0;
+        inset: auto 0 0;
         width: 100%;
-        height: min(85svh, 640px);
-        border-inline: 0;
+        height: min(86svh, 640px);
+        border-radius: var(--r-card) var(--r-card) 0 0;
         border-bottom: 0;
     }
 
@@ -230,7 +225,6 @@
         display: none;
     }
 
-    /* one swipeable row so the conversation keeps most of the screen */
     .chat__suggest {
         flex-wrap: nowrap;
         overflow-x: auto;

@@ -7,10 +7,8 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
-import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Inspector from './components/Inspector';
 
 const CodeViewer = lazy(() => import('./components/CodeViewer'));
 const Chatbot = lazy(() => import('./components/Chatbot'));
@@ -25,7 +23,6 @@ function HomePage() {
         <About />
         <Experience />
         <Projects />
-        <Skills />
         <Contact />
       </main>
       <Footer />
@@ -36,6 +33,7 @@ function HomePage() {
 function CodeViewerPage() {
   const { type } = useParams();
   const navigate = useNavigate();
+  // Braces matter: scrollTo returns a Promise in recent Chrome, and an effect must not return one.
   useEffect(() => { window.scrollTo({ top: 0 }); }, [type]);
   // key: switching suites remounts the viewer, resetting view/copy state.
   return <CodeViewer key={type} codeType={type} onBack={() => navigate('/')} />;
@@ -46,14 +44,13 @@ export default function App() {
     <LanguageProvider>
       <MotionConfig reducedMotion="user">
         <BrowserRouter>
-          <Suspense fallback={<div className="route-loading mono">Loading…</div>}>
+          <Suspense fallback={<div className="route-loading">Loading…</div>}>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/code/:type" element={<CodeViewerPage />} />
             </Routes>
             <Chatbot />
           </Suspense>
-          <Inspector />
         </BrowserRouter>
       </MotionConfig>
     </LanguageProvider>
