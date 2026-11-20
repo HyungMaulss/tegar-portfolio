@@ -18,3 +18,4 @@ export const Unchecked = () => (
         <rect x="2" y="2" width="20" height="20" rx="6" />
     </svg>
 );
+export const ArrowUp = () => <svg {...base} width="20" height="20"><path d="M12 19V5" /><path d="M6 11l6-6 6 6" /></svg>;

@@ -41,6 +41,7 @@ export default function Contact() {
                         {status === 'copied' ? c.copied : c.copy}
                     </button>
                     <a href={profile.cv} download className="btn contact__cv">{c.cv}</a>
+                    <a href={profile.resume} download className="btn contact__cv">{t.nav.resume}</a>
                     <p className="contact__status" role="status">{status === 'failed' ? c.copyFailed : ''}</p>
                     <ul className="contact__links">
                         {links.map(([label, href]) => (

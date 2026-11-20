@@ -8,6 +8,7 @@ export const translations = {
             contact: 'Contact',
             cv: 'Download CV',
             cvShort: 'CV',
+            resume: 'Download resume (PPT)',
             menu: 'Open menu',
             close: 'Close',
             home: 'Tegar Maulana, back to top',
@@ -161,6 +162,7 @@ export const translations = {
         footer: {
             place: 'Jakarta',
             top: 'Back to top',
+            loading: 'Loading portfolio',
         },
         chatbot: {
             launcher: 'Ask about Tegar',
@@ -183,7 +185,7 @@ export const translations = {
                 projectsSource: 'The {n} test framework projects have readable source code. Open them from the Projects section.',
                 contactIntro: 'You can reach Tegar via:',
                 location: 'Tegar is based in **Jakarta, Indonesia**.',
-                cv: 'Download Tegar\'s CV with the **Download CV** button in the top bar or the **Download CV** link in the Contact section.',
+                cv: 'Download Tegar\'s CV with the **Download CV** button in the top bar (PDF), or get his resume deck with **Download resume (PPT)** in the hero or Contact section.',
                 hire: 'Tegar is open to talking about QA roles and projects. Email (**{email}**) or LinkedIn is the fastest way to reach him.',
                 approach: 'How Tegar approaches testing:\n• Reads the requirements (SRS) first to set the scope\n• Writes test scenarios and test cases before executing\n• Combines manual exploration with Cypress automation\n• Covers APIs and load with K6\n• Reports bugs with clear reproduction steps and works with developers on the fix',
                 greeting: 'Hello. Ask me about Tegar\'s experience, projects, skills or how to contact him.',
@@ -227,6 +229,7 @@ export const translations = {
             contact: 'Kontak',
             cv: 'Unduh CV',
             cvShort: 'CV',
+            resume: 'Unduh resume (PPT)',
             menu: 'Buka menu',
             close: 'Tutup',
             home: 'Tegar Maulana, kembali ke atas',
@@ -380,6 +383,7 @@ export const translations = {
         footer: {
             place: 'Jakarta',
             top: 'Kembali ke atas',
+            loading: 'Memuat portofolio',
         },
         chatbot: {
             launcher: 'Tanya soal Tegar',
@@ -402,7 +406,7 @@ export const translations = {
                 projectsSource: '{n} proyek framework pengujian punya source code yang bisa dibaca. Buka dari bagian Proyek.',
                 contactIntro: 'Tegar bisa dihubungi lewat:',
                 location: 'Tegar berdomisili di **Jakarta, Indonesia**.',
-                cv: 'CV Tegar bisa diunduh lewat tombol **Unduh CV** di bar atas atau tautan **Unduh CV** di bagian Kontak.',
+                cv: 'CV Tegar bisa diunduh lewat tombol **Unduh CV** di bar atas (PDF), atau unduh resume versi presentasi lewat **Unduh resume (PPT)** di bagian atas atau Kontak.',
                 hire: 'Tegar terbuka untuk berdiskusi soal posisi QA dan proyek. Email (**{email}**) atau LinkedIn adalah cara tercepat.',
                 approach: 'Cara Tegar melakukan testing:\n• Membaca kebutuhan (SRS) dulu untuk menentukan cakupan\n• Menulis skenario dan test case sebelum eksekusi\n• Menggabungkan eksplorasi manual dengan otomasi Cypress\n• Menguji API dan beban dengan K6\n• Melaporkan bug dengan langkah reproduksi yang jelas dan mengawal perbaikannya bersama developer',
                 greeting: 'Halo. Tanyakan tentang pengalaman, proyek, keahlian, atau cara menghubungi Tegar.',

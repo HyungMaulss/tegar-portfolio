@@ -60,6 +60,12 @@
     gap: 12px;
 }
 
+.hero__resume {
+    margin-top: 14px;
+    gap: 8px;
+    font-size: 16px;
+}
+
 /* Release checklist card: a Sun surface with an ink border, the hero's focal object. */
 .checklist {
     flex: 0 1 460px;

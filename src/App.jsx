@@ -9,6 +9,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import BackToTop from './components/BackToTop';
 
 const CodeViewer = lazy(() => import('./components/CodeViewer'));
 const Chatbot = lazy(() => import('./components/Chatbot'));
@@ -26,6 +27,7 @@ function HomePage() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 }
@@ -44,7 +46,7 @@ export default function App() {
     <LanguageProvider>
       <MotionConfig reducedMotion="user">
         <BrowserRouter>
-          <Suspense fallback={<div className="route-loading">Loading…</div>}>
+          <Suspense fallback={<div className="route-loading" role="status" aria-label="Loading"><span /></div>}>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/code/:type" element={<CodeViewerPage />} />

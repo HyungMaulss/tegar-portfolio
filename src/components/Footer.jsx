@@ -6,7 +6,6 @@ export default function Footer() {
     return (
         <footer className="footer container">
             <span>© {new Date().getFullYear()} Tegar Maulana · {t.footer.place}</span>
-            <a href="#top" className="text-link">{t.footer.top} ↑</a>
         </footer>
     );
 }

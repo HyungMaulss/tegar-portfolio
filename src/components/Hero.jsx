@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { ArrowRight, Checked, Unchecked } from './Icons';
+import { profile } from '../data/profile';
+import { ArrowRight, Checked, Download, Unchecked } from './Icons';
 import Hl from './Hl';
 import './Hero.css';
 
@@ -33,6 +34,9 @@ export default function Hero() {
                         <a href="#work" className="btn btn--ink">{h.ctaWork}<ArrowRight /></a>
                         <a href="#contact" className="btn">{h.ctaContact}</a>
                     </motion.div>
+                    <motion.a href={profile.resume} download className="text-link hero__resume" {...rise(0.44)}>
+                        <Download />{t.nav.resume}
+                    </motion.a>
                 </div>
 
                 {/* The checklist is the QA idea made visible: four things done, the visitor's release is the open box. */}
