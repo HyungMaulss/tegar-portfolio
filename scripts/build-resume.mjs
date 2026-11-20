@@ -15,13 +15,14 @@ const here = (p) => fileURLToPath(new URL(p, import.meta.url));
 const OUT = here('../public/Tegar-Maulana-Resume.pptx');
 const logo = (name) => 'image/png;base64,' + readFileSync(here(`./assets/${name}.png`)).toString('base64');
 
-// Site palette: Sky / Ink / Sun (Sun is a fill, never text on Sky).
+// Site dark theme: dark background, light text, Sun fills. Text on Sun stays INK.
+const BG = '12132B';
+const PANEL = '23254F';
 const SKY = 'F4F6FF';
 const INK = '1A1B3A';
 const SUN = 'FFC83D';
-const MUTED = '585A74';
-const LINE = 'D7D9EA';
-const SKY_MUTED = 'B9BBD6';
+const MUTED = 'B9BBD6';
+const LINE = '4A4C70';
 const FONT = 'Arial';
 
 const pres = new pptxgen();
@@ -38,23 +39,23 @@ const text = (slide, value, opts) => slide.addText(value, { fontFace: FONT, marg
 // Persistent objects: same names on every slide so Morph tweens them.
 const sun = (slide, x, y, w, h) =>
     slide.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w, h, rectRadius: 0.22, fill: { color: SUN }, line: { color: INK, width: 1.5 }, objectName: '!!sun' });
-const brand = (slide, dark, x = M, y = 0.45, w = 0.82) =>
-    slide.addImage({ data: logo(dark ? 'logo-sky' : 'logo-ink'), x, y, w, h: w / 1.624, objectName: '!!logo', altText: 'TM logo' });
+const brand = (slide, x = M, y = 0.45, w = 0.82) =>
+    slide.addImage({ data: logo('logo-sky'), x, y, w, h: w / 1.624, objectName: '!!logo', altText: 'TM logo' });
 const title = (slide, value, opts = {}) =>
-    text(slide, value, { x: M, y: 0.95, w: 9.5, h: 0.75, fontSize: 32, bold: true, color: INK, objectName: '!!title', ...opts });
+    text(slide, value, { x: M, y: 0.95, w: 9.5, h: 0.75, fontSize: 32, bold: true, color: SKY, objectName: '!!title', ...opts });
 const eyebrow = (slide, value, color = MUTED) =>
     text(slide, value.toUpperCase(), { x: M + 1.1, y: 0.55, w: 6, h: 0.3, fontSize: 11, bold: true, color, charSpacing: 2, objectName: '!!eyebrow' });
 
 // ---------- 1. Cover ----------
 {
     const s = pres.addSlide();
-    s.background = { color: INK };
-    brand(s, true);
-    text(s, 'Hi, I am', { x: M, y: 1.75, w: 6, h: 0.4, fontSize: 18, color: SKY_MUTED });
+    s.background = { color: BG };
+    brand(s);
+    text(s, 'Hi, I am', { x: M, y: 1.75, w: 6, h: 0.4, fontSize: 18, color: MUTED });
     title(s, profile.name, { y: 2.2, w: 6.6, h: 1.0, fontSize: 48, color: SKY });
     text(s, 'Quality Assurance Engineer', { x: M, y: 3.25, w: 6.6, h: 0.5, fontSize: 22, bold: true, color: SUN });
     text(s, `${t.hero.title[0]} ${t.hero.title[1]} ${t.hero.title[2]}`, { x: M, y: 4.05, w: 6.3, h: 1.1, fontSize: 20, color: SKY });
-    text(s, `${profile.email}   ·   Jakarta, Indonesia`, { x: M, y: 6.55, w: 7, h: 0.35, fontSize: 13, color: SKY_MUTED });
+    text(s, `${profile.email}   ·   Jakarta, Indonesia`, { x: M, y: 6.55, w: 7, h: 0.35, fontSize: 13, color: MUTED });
 
     sun(s, 7.65, 0.95, 5.1, 5.6);
     const c = t.hero.checklist;
@@ -74,8 +75,8 @@ const eyebrow = (slide, value, color = MUTED) =>
 // ---------- 2. Profile ----------
 {
     const s = pres.addSlide();
-    s.background = { color: SKY };
-    brand(s, false);
+    s.background = { color: BG };
+    brand(s);
     eyebrow(s, t.about.label);
     title(s, t.about.title.join(' '), { h: 1.2, w: 11.5, fontSize: 30 });
 
@@ -85,25 +86,25 @@ const eyebrow = (slide, value, color = MUTED) =>
         text(s, label, { x: M + 0.35, y, w: 4.0, h: 0.28, fontSize: 11, bold: true, color: INK });
         text(s, value, { x: M + 0.35, y: y + 0.3, w: 4.0, h: 0.6, fontSize: 14, bold: true, color: INK });
     });
-    text(s, t.about.p1, { x: 5.85, y: 2.5, w: 6.85, h: 2.4, fontSize: 16, color: INK, lineSpacingMultiple: 1.25 });
+    text(s, t.about.p1, { x: 5.85, y: 2.5, w: 6.85, h: 2.4, fontSize: 16, color: SKY, lineSpacingMultiple: 1.25 });
     text(s, t.about.p2, { x: 5.85, y: 4.65, w: 6.85, h: 1.4, fontSize: 15, color: MUTED, lineSpacingMultiple: 1.25 });
 }
 
 // ---------- 3. Experience ----------
 {
     const s = pres.addSlide();
-    s.background = { color: SKY };
-    brand(s, false);
+    s.background = { color: BG };
+    brand(s);
     eyebrow(s, t.experience.label);
     title(s, t.experience.title);
 
     t.experience.jobs.forEach((job, i) => {
         const y = 1.95 + i * 1.32;
         if (i === 0) sun(s, M, y, W - 2 * M, 1.18);
-        else s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: M, y, w: W - 2 * M, h: 1.18, rectRadius: 0.16, fill: { color: SKY }, line: { color: LINE, width: 1 } });
+        else s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: M, y, w: W - 2 * M, h: 1.18, rectRadius: 0.16, fill: { color: BG }, line: { color: LINE, width: 1 } });
         text(s, `${job.date} · ${job.location}`, { x: M + 0.3, y: y + 0.17, w: 4.6, h: 0.28, fontSize: 11, bold: true, color: i === 0 ? INK : MUTED });
-        text(s, job.role, { x: M + 0.3, y: y + 0.45, w: 4.8, h: 0.35, fontSize: 17, bold: true, color: INK });
-        text(s, job.company, { x: M + 0.3, y: y + 0.8, w: 4.8, h: 0.3, fontSize: 12, color: INK });
+        text(s, job.role, { x: M + 0.3, y: y + 0.45, w: 4.8, h: 0.35, fontSize: 17, bold: true, color: i === 0 ? INK : SKY });
+        text(s, job.company, { x: M + 0.3, y: y + 0.8, w: 4.8, h: 0.3, fontSize: 12, color: i === 0 ? INK : SKY });
         text(s, job.summary, { x: 5.9, y: y + 0.2, w: 6.5, h: 0.8, fontSize: 13, color: i === 0 ? INK : MUTED, valign: 'middle' });
     });
 }
@@ -111,8 +112,8 @@ const eyebrow = (slide, value, color = MUTED) =>
 // ---------- 4. Toolbox ----------
 {
     const s = pres.addSlide();
-    s.background = { color: SKY };
-    brand(s, false);
+    s.background = { color: BG };
+    brand(s);
     eyebrow(s, t.about.toolbox);
     title(s, 'My toolbox');
 
@@ -121,16 +122,16 @@ const eyebrow = (slide, value, color = MUTED) =>
         const x = M + (i % 2) * (cw + 0.3);
         const y = 1.95 + Math.floor(i / 2) * 2.35;
         if (i === 0) sun(s, x, y, cw, 2.05);
-        else s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w: cw, h: 2.05, rectRadius: 0.16, fill: { color: SKY }, line: { color: LINE, width: 1 } });
-        text(s, t.skills.groups[g.key], { x: x + 0.3, y: y + 0.25, w: cw - 0.6, h: 0.4, fontSize: 18, bold: true, color: INK });
+        else s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w: cw, h: 2.05, rectRadius: 0.16, fill: { color: BG }, line: { color: LINE, width: 1 } });
+        text(s, t.skills.groups[g.key], { x: x + 0.3, y: y + 0.25, w: cw - 0.6, h: 0.4, fontSize: 18, bold: true, color: i === 0 ? INK : SKY });
         // Chips laid out by estimated width, wrapping inside the card.
         let cx = x + 0.3;
         let cy = y + 0.85;
         g.tools.forEach((tool) => {
             const w = 0.36 + tool.name.length * 0.105;
             if (cx + w > x + cw - 0.3) { cx = x + 0.3; cy += 0.5; }
-            s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: cx, y: cy, w, h: 0.38, rectRadius: 0.08, fill: { color: SKY }, line: { color: i === 0 ? INK : LINE, width: 1 } });
-            text(s, tool.name, { x: cx, y: cy, w, h: 0.38, fontSize: 12, bold: true, color: INK, align: 'center', valign: 'middle' });
+            s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: cx, y: cy, w, h: 0.38, rectRadius: 0.08, fill: { color: i === 0 ? SKY : BG }, line: { color: i === 0 ? INK : LINE, width: 1 } });
+            text(s, tool.name, { x: cx, y: cy, w, h: 0.38, fontSize: 12, bold: true, color: i === 0 ? INK : SKY, align: 'center', valign: 'middle' });
             cx += w + 0.12;
         });
     });
@@ -139,8 +140,8 @@ const eyebrow = (slide, value, color = MUTED) =>
 // ---------- 5. Projects ----------
 {
     const s = pres.addSlide();
-    s.background = { color: SKY };
-    brand(s, false);
+    s.background = { color: BG };
+    brand(s);
     eyebrow(s, t.projects.label);
     title(s, t.projects.title);
 
@@ -154,8 +155,8 @@ const eyebrow = (slide, value, color = MUTED) =>
 
     rest.forEach((p, i) => {
         const y = 1.95 + i * 1.0;
-        s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 6.2, y, w: W - M - 6.2, h: 0.88, rectRadius: 0.14, fill: { color: SKY }, line: { color: LINE, width: 1 } });
-        text(s, p.title, { x: 6.45, y: y + 0.14, w: 3.6, h: 0.32, fontSize: 15, bold: true, color: INK });
+        s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 6.2, y, w: W - M - 6.2, h: 0.88, rectRadius: 0.14, fill: { color: BG }, line: { color: LINE, width: 1 } });
+        text(s, p.title, { x: 6.45, y: y + 0.14, w: 3.6, h: 0.32, fontSize: 15, bold: true, color: SKY });
         text(s, sourceIds.includes(p.id) ? `${p.type} · code on the portfolio` : p.type, { x: 6.45, y: y + 0.5, w: 3.6, h: 0.26, fontSize: 10.5, color: MUTED });
         text(s, p.desc, { x: 10.15, y: y + 0.1, w: 2.4, h: 0.68, fontSize: 10.5, color: MUTED, valign: 'middle' });
     });
@@ -164,8 +165,8 @@ const eyebrow = (slide, value, color = MUTED) =>
 // ---------- 6. How I test ----------
 {
     const s = pres.addSlide();
-    s.background = { color: SKY };
-    brand(s, false);
+    s.background = { color: BG };
+    brand(s);
     eyebrow(s, 'Approach');
     title(s, 'How I approach testing');
 
@@ -178,9 +179,9 @@ const eyebrow = (slide, value, color = MUTED) =>
     ];
     steps.forEach((step, i) => {
         const y = 2.0 + i * 0.95;
-        s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: M, y, w: 0.55, h: 0.55, rectRadius: 0.1, fill: { color: INK }, line: { color: INK, width: 0 } });
+        s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: M, y, w: 0.55, h: 0.55, rectRadius: 0.1, fill: { color: PANEL }, line: { color: LINE, width: 1 } });
         text(s, String(i + 1), { x: M, y, w: 0.55, h: 0.55, fontSize: 16, bold: true, color: SUN, align: 'center', valign: 'middle' });
-        text(s, step, { x: M + 0.8, y: y + 0.04, w: 6.4, h: 0.5, fontSize: 16, color: INK, valign: 'middle' });
+        text(s, step, { x: M + 0.8, y: y + 0.04, w: 6.4, h: 0.5, fontSize: 16, color: SKY, valign: 'middle' });
     });
     sun(s, 8.0, 1.95, 4.73, 3.55);
     text(s, '“', { x: 8.35, y: 2.15, w: 1, h: 0.9, fontSize: 64, bold: true, color: INK });
@@ -191,12 +192,12 @@ const eyebrow = (slide, value, color = MUTED) =>
 // ---------- 7. Contact ----------
 {
     const s = pres.addSlide();
-    s.background = { color: INK };
-    brand(s, true);
-    eyebrow(s, t.contact.label, SKY_MUTED);
+    s.background = { color: BG };
+    brand(s);
+    eyebrow(s, t.contact.label, MUTED);
     title(s, t.contact.title[0], { y: 2.0, w: 6.4, h: 1.5, fontSize: 40, color: SKY });
     text(s, t.contact.title[1], { x: M, y: 3.55, w: 6.4, h: 0.7, fontSize: 30, bold: true, color: SUN });
-    text(s, t.contact.body, { x: M, y: 4.5, w: 6.0, h: 0.8, fontSize: 16, color: SKY_MUTED });
+    text(s, t.contact.body, { x: M, y: 4.5, w: 6.0, h: 0.8, fontSize: 16, color: MUTED });
 
     sun(s, 7.65, 1.55, 5.1, 4.6);
     const rows = [
