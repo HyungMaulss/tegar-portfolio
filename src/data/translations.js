@@ -4,7 +4,7 @@ export const translations = {
         nav: {
             about: 'About',
             experience: 'Experience',
-            work: 'Work',
+            projects: 'Projects',
             contact: 'Contact',
             cv: 'Download CV',
             cvShort: 'CV',
@@ -20,7 +20,7 @@ export const translations = {
             hello: 'Hi, I\'m Tegar, a Quality Assurance Engineer.',
             title: ['I make sure it', 'works', 'before your users find out it doesn\'t.'],
             lede: 'Manual, API, performance and end-to-end testing, with bug reports developers can reproduce on the first try.',
-            ctaWork: 'See my work',
+            ctaWork: 'See my projects',
             ctaContact: 'Get in touch',
             checklist: {
                 title: 'Release checklist',
@@ -88,7 +88,7 @@ export const translations = {
             ],
         },
         projects: {
-            label: 'Work',
+            label: 'Projects',
             title: 'Things I have tested and built',
             note: 'The four test frameworks open their real code and a replayed sample run.',
             featured: 'Featured',
@@ -225,7 +225,7 @@ export const translations = {
         nav: {
             about: 'Tentang',
             experience: 'Pengalaman',
-            work: 'Karya',
+            projects: 'Proyek',
             contact: 'Kontak',
             cv: 'Unduh CV',
             cvShort: 'CV',
@@ -241,7 +241,7 @@ export const translations = {
             hello: 'Halo, saya Tegar, seorang Quality Assurance Engineer.',
             title: ['Saya memastikan semuanya', 'berjalan', 'sebelum pengguna menemukan yang tidak.'],
             lede: 'Pengujian manual, API, performa, dan end-to-end, dengan laporan bug yang bisa langsung direproduksi developer di percobaan pertama.',
-            ctaWork: 'Lihat karya saya',
+            ctaWork: 'Lihat proyek saya',
             ctaContact: 'Hubungi saya',
             checklist: {
                 title: 'Checklist rilis',
@@ -309,7 +309,7 @@ export const translations = {
             ],
         },
         projects: {
-            label: 'Karya',
+            label: 'Proyek',
             title: 'Yang pernah saya uji dan bangun',
             note: 'Empat framework pengujian membuka kode aslinya beserta contoh run yang diputar ulang.',
             featured: 'Unggulan',

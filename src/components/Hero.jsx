@@ -31,7 +31,7 @@ export default function Hero() {
                     </motion.h1>
                     <motion.p className="hero__lede" {...rise(0.26)}>{h.lede}</motion.p>
                     <motion.div className="hero__cta" {...rise(0.36)}>
-                        <a href="#work" className="btn btn--ink">{h.ctaWork}<ArrowRight /></a>
+                        <a href="#projects" className="btn btn--ink">{h.ctaWork}<ArrowRight /></a>
                         <a href="#contact" className="btn">{h.ctaContact}</a>
                     </motion.div>
                     <motion.a href={profile.resume} download className="text-link hero__resume" {...rise(0.44)}>

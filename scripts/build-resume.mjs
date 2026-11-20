@@ -136,7 +136,7 @@ const eyebrow = (slide, value, color = MUTED) =>
     });
 }
 
-// ---------- 5. Work ----------
+// ---------- 5. Projects ----------
 {
     const s = pres.addSlide();
     s.background = { color: SKY };

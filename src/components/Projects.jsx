@@ -11,7 +11,7 @@ export default function Projects() {
     const p = t.projects;
 
     return (
-        <section id="work" className="section container">
+        <section id="projects" className="section container">
             <motion.div className="work__head" {...reveal()}>
                 <div>
                     <p className="eyebrow">{p.label}</p>

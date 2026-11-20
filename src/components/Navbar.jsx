@@ -9,7 +9,7 @@ import './Navbar.css';
 const LINKS = [
     ['about', 'about'],
     ['experience', 'experience'],
-    ['work', 'work'],
+    ['projects', 'projects'],
     ['contact', 'contact'],
 ];
 
