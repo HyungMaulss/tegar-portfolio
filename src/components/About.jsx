@@ -1,47 +1,38 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { skillGroups } from '../data/profile';
-import SectionHeader from './SectionHeader';
-import Check from './Check';
+import { reveal } from '../lib/motion';
+import Hl from './Hl';
 import './About.css';
-
-const reveal = (delay = 0) => ({
-    initial: { opacity: 0, y: 24 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: '-60px' },
-    transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] },
-});
 
 export default function About() {
     const { t } = useLanguage();
-    const [lead, key] = t.about.title;
+    const [lead, mark] = t.about.title;
 
     return (
-        <section className="about section" id="about">
-            <div className="container">
-                <SectionHeader label={t.about.label}>
-                    {lead} <Check>{key}</Check>
-                </SectionHeader>
+        <section id="about" className="about section container">
+            <motion.div className="about__text" {...reveal()}>
+                <p className="eyebrow">{t.about.label}</p>
+                <h2 className="h2">{lead} <Hl>{mark}</Hl></h2>
+                <p className="about__p">{t.about.p1}</p>
+                <p className="about__p about__p--muted">{t.about.p2}</p>
+            </motion.div>
 
-                <div className="about__grid">
-                    <motion.div className="about__text" {...reveal()}>
-                        <p>{t.about.p1}</p>
-                        <p>{t.about.p2}</p>
-                    </motion.div>
-
-                    <motion.div className="about__tools" {...reveal(0.15)}>
-                        <h3 className="about__tools-title">{t.about.toolsTitle}</h3>
-                        {skillGroups.map((g) => (
-                            <div key={g.key} className="about__group">
-                                <span className="about__group-name">{t.skills.groups[g.key]}</span>
-                                <ul className="about__list">
-                                    {g.tools.map((tool) => <li key={tool.name}>{tool.name}</li>)}
-                                </ul>
-                            </div>
-                        ))}
-                    </motion.div>
+            <motion.div className="toolbox" {...reveal(0.12)}>
+                <p className="toolbox__title">{t.about.toolbox}</p>
+                <div className="toolbox__groups">
+                    {skillGroups.map((g, gi) => (
+                        <div key={g.key}>
+                            <p className="toolbox__group">{t.skills.groups[g.key]}</p>
+                            <ul className="toolbox__chips">
+                                {g.tools.map((tool) => (
+                                    <li key={tool.name} className={`chip ${gi === 0 ? 'chip--sun' : ''}`}>{tool.name}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 }

@@ -1,168 +1,240 @@
 .hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding-top: calc(var(--nav-h) + 32px);
-    overflow: hidden;
-}
-
-.hero__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    gap: clamp(24px, 4vw, 64px);
-    align-items: end;
-}
-
-.hero__text {
-    padding-bottom: clamp(56px, 9vh, 112px);
-}
-
-.hero__hello {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--ink-2);
-}
-
-.hero__name {
-    margin-top: 6px;
-    font-size: clamp(3rem, 7.4vw, 6.25rem);
-    font-weight: 800;
-    line-height: 0.98;
-    letter-spacing: -0.045em;
-}
-
-.hero__role {
-    margin-top: 22px;
-    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-}
-
-.hero__lede {
-    max-width: 44ch;
-    margin-top: 22px;
-    font-size: clamp(1.05rem, 1.4vw, 1.15rem);
-    color: var(--ink-2);
-}
-
-.hero__cta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 16px 28px;
-    margin-top: 36px;
+    gap: 56px 72px;
+    padding-top: clamp(56px, 8vw, 104px);
+    padding-bottom: 56px;
 }
 
-.hero__cv {
-    font-weight: 600;
-    min-height: 44px;
+.hero__text {
+    flex: 1 1 520px;
+    min-width: 0;
+}
+
+.hero__badge {
     display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.hero__badge-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    background: var(--sun);
+    outline: 1.5px solid var(--ink);
+}
+
+.hero__hello {
+    margin-top: 28px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.hero__title {
+    margin-top: 12px;
+    font-family: var(--font-head);
+    font-size: clamp(44px, 5.8vw, 80px);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+}
+
+.hero__lede {
+    margin-top: 24px;
+    max-width: 46ch;
+    font-size: 19px;
+    color: var(--muted);
+}
+
+.hero__cta {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* Release checklist card: a Sun surface with an ink border, the hero's focal object. */
+.checklist {
+    flex: 0 1 460px;
+    min-width: 0;
+    padding: 32px;
+    border-radius: var(--r-lg);
+    background: var(--sun);
+    color: var(--on-sun);
+    border: 1.5px solid var(--on-sun);
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.checklist:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0 var(--ink);
+}
+
+.checklist__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.checklist__title {
+    font-family: var(--font-head);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.checklist__progress {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.checklist__list {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.checklist__item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(26, 27, 58, 0.16);
+}
+
+.checklist__item svg {
+    flex: 0 0 auto;
+    margin-top: 2px;
+}
+
+.checklist__item--open {
+    border-bottom: 0;
     align-items: center;
 }
 
-/* Visual: a soft teal arch with the cut-out portrait standing in front of it. */
-.hero__visual {
-    --px: 0;
-    --py: 0;
-    position: relative;
-    height: min(560px, 68svh);
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+.checklist__item--open svg {
+    margin-top: 0;
 }
 
-.hero__arch {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: min(400px, 88%);
-    height: 82%;
-    margin-left: calc(min(400px, 88%) / -2);
-    border-radius: 999px 999px 0 0;
-    background: var(--teal-soft);
-    transform-origin: bottom;
-    translate: calc(var(--px) * -14px) calc(var(--py) * -8px);
-    transition: translate 0.8s var(--ease);
+.checklist__item .text-link {
+    color: var(--on-sun);
 }
 
-.hero__photo {
-    position: relative;
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-    object-position: bottom;
-    translate: calc(var(--px) * 16px) calc(var(--py) * 8px);
-    transition: translate 0.8s var(--ease);
+.checklist__sub {
+    font-size: 15px;
 }
 
-.hero__note {
-    position: absolute;
-    left: 0;
-    top: 14%;
-    font-family: var(--font-hand);
-    font-size: 1.45rem;
-    line-height: 1.1;
-    color: var(--ink-2);
-    max-width: 11ch;
-    rotate: -6deg;
+/* Each tick draws itself in, one after another, after the card lands. */
+.tick__mark {
+    stroke-dasharray: 16;
+    stroke-dashoffset: 16;
+    animation: tick 0.5s var(--ease) forwards;
+    animation-delay: calc(0.9s + var(--i, 0) * 0.18s);
 }
 
-.hero__arrow {
-    width: 80px;
-    margin: 6px 0 0 40%;
-    overflow: visible;
+@keyframes tick {
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
-.hero__arrow path {
-    fill: none;
-    stroke: var(--teal-ink);
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+/* Quick facts for recruiters. */
+.facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
 }
 
-.hero__now {
-    padding-block: 22px;
-    font-size: 0.95rem;
-    color: var(--ink-2);
-    position: relative;
-    /* hairline aligned with the text column, not the padded box */
-    background: var(--paper) linear-gradient(var(--line), var(--line)) top / 100% 1px no-repeat;
-    background-origin: content-box;
-    background-clip: border-box;
+.fact {
+    padding: 22px 24px;
+    border-radius: var(--r-md);
+    border: 1px solid var(--line);
+    transition: border-color 0.25s, transform 0.25s var(--ease);
 }
 
-@media (max-width: 860px) {
+.fact:hover {
+    border-color: var(--ink);
+    transform: translateY(-3px);
+}
+
+.fact__label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.fact__value {
+    margin-top: 6px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+@media (max-width: 600px) {
     .hero {
-        min-height: auto;
+        padding-top: 36px;
+        gap: 32px;
     }
 
-    .hero__grid {
-        grid-template-columns: 1fr;
+    .hero__badge {
+        font-size: 14px;
     }
 
-    .hero__text {
-        padding-bottom: 8px;
+    .hero__hello {
+        margin-top: 22px;
+        font-size: 17px;
     }
 
-    .hero__visual {
-        height: 420px;
+    .hero__title {
+        font-size: 42px;
+        line-height: 1.04;
     }
 
-    .hero__note {
-        top: 8%;
-        font-size: 1.25rem;
-    }
-}
-
-@media (max-width: 420px) {
-    .hero__visual {
-        height: 360px;
+    .hero__lede {
+        font-size: 17px;
     }
 
-    .hero__note {
-        max-width: 9ch;
+    .hero__cta {
+        flex-direction: column;
+    }
+
+    .hero__cta .btn {
+        width: 100%;
+    }
+
+    .checklist {
+        padding: 24px;
+        border-radius: 18px;
+    }
+
+    .checklist__title {
+        font-size: 22px;
+    }
+
+    .facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .fact {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .fact__label {
+        font-size: 13px;
+    }
+
+    .fact__value {
+        font-size: 15px;
+        line-height: 1.35;
     }
 }

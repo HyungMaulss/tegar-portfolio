@@ -222,7 +222,7 @@ export default function CodeViewer({ codeType, onBack }) {
                     <div className="cv__actions">
                         <button type="button" className="cv__action" onClick={copy}>{copied ? `✓ ${cv.copied}` : cv.copy}</button>
                         <button type="button" className="cv__action" onClick={download}>{cv.download}</button>
-                        <button type="button" className="btn btn--solid cv__run" onClick={runTest}>{cv.run}</button>
+                        <button type="button" className="btn btn--ink cv__run" onClick={runTest}>{cv.run}</button>
                     </div>
                 </div>
 

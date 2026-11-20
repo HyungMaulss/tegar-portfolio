@@ -7,7 +7,7 @@ const VIEW = { full: "250 376 1026 222", mark: "250 376 376 222" };
 
 export default function Logo({ variant = "full", className = "", title = "Tegar Maulana" }) {
     return (
-        <svg className={`logo ${className}`} viewBox={VIEW[variant]} role="img" aria-label={title} focusable="false">
+        <svg className={`logo ${className}`} viewBox={VIEW[variant]} {...(title ? { role: "img", "aria-label": title } : { "aria-hidden": true })} focusable="false">
             <path d={INK} fill="currentColor" />
             <path className="logo__check" d={CHECK} />
             {variant === "full" && <path d={RULE} fill="currentColor" opacity="0.35" />}

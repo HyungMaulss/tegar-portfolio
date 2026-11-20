@@ -2,48 +2,56 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { sourceIds } from '../data/profile';
-import SectionHeader from './SectionHeader';
-import Check from './Check';
+import { reveal } from '../lib/motion';
+import { ArrowRight } from './Icons';
 import './Projects.css';
 
-// The first card is wide: Cypress is the tool of the current job, so it leads.
 export default function Projects() {
     const { t } = useLanguage();
-    const [lead, key] = t.projects.title;
+    const p = t.projects;
 
     return (
-        <section className="projects section" id="projects">
-            <div className="container">
-                <SectionHeader label={t.projects.label}>
-                    {lead} <Check>{key}</Check>
-                </SectionHeader>
+        <section id="work" className="section container">
+            <motion.div className="work__head" {...reveal()}>
+                <div>
+                    <p className="eyebrow">{p.label}</p>
+                    <h2 className="h2">{p.title}</h2>
+                </div>
+                <p className="work__note">{p.note}</p>
+            </motion.div>
 
-                <ul className="cards">
-                    {t.projects.items.map((p, i) => {
-                        const hasSource = sourceIds.includes(p.id);
+            <ul className="work__grid">
+                {p.items.map((item, i) => {
+                    const hasSource = sourceIds.includes(item.id);
+                    // The first project is featured: Cypress is the tool of the current job.
+                    if (i === 0) {
                         return (
-                            <motion.li
-                                key={p.id}
-                                className={`card ${hasSource ? 'has-link' : ''}`}
-                                initial={{ opacity: 0, y: 32 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: '-40px' }}
-                                transition={{ duration: 0.8, delay: (i % 2) * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                            >
-                                <p className="card__type">{p.type}</p>
-                                <h3 className="card__title">
-                                    {hasSource ? <Link to={`/code/${p.id}`} className="card__link">{p.title}</Link> : p.title}
-                                </h3>
-                                <p className="card__desc">{p.desc}</p>
-                                <div className="card__foot">
-                                    <p className="card__stack">{p.tags.join(' · ')}</p>
-                                    {hasSource && <span className="card__cta" aria-hidden="true">{t.projects.source}</span>}
+                            <motion.li key={item.id} className="card card--feat" {...reveal()}>
+                                <div className="card__top">
+                                    <span className="card__badge">{p.featured} · {item.type}</span>
+                                    <span>{item.tags.join(' · ')}</span>
                                 </div>
+                                <div className="card__spacer" />
+                                <h3 className="card__title card__title--feat">{item.title}</h3>
+                                <p className="card__desc">{item.desc}</p>
+                                {hasSource && <Link to={`/code/${item.id}`} className="btn btn--ink card__btn">{p.source}<ArrowRight /></Link>}
                             </motion.li>
                         );
-                    })}
-                </ul>
-            </div>
+                    }
+                    return (
+                        <motion.li key={item.id} className="card" {...reveal((i % 3) * 0.08)}>
+                            <p className="card__type">{item.type}</p>
+                            <div className="card__spacer" />
+                            <h3 className="card__title">{item.title}</h3>
+                            <p className="card__desc card__desc--muted">{item.desc}</p>
+                            <div className="card__foot">
+                                <span className="card__tags">{item.tags.slice(0, 2).join(' · ')}</span>
+                                {hasSource && <Link to={`/code/${item.id}`} className="text-link">{p.sourceShort} →</Link>}
+                            </div>
+                        </motion.li>
+                    );
+                })}
+            </ul>
         </section>
     );
 }

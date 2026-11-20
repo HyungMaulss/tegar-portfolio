@@ -2,7 +2,7 @@
     position: sticky;
     top: 0;
     z-index: 40;
-    background: var(--paper);
+    background: var(--sky);
     border-bottom: 1px solid var(--line);
 }
 
@@ -32,7 +32,7 @@
 }
 
 .cv__crumb {
-    color: var(--ink-2);
+    color: var(--muted);
 }
 
 .cv__title {
@@ -46,7 +46,7 @@
 .cv__desc {
     margin-top: 20px;
     max-width: 68ch;
-    color: var(--ink-2);
+    color: var(--muted);
     font-size: 1.05rem;
 }
 
@@ -63,7 +63,7 @@
     display: inline-flex;
     align-items: center;
     padding: 0 14px;
-    color: var(--ink-2);
+    color: var(--muted);
     transition: color 0.2s;
 }
 
@@ -74,7 +74,7 @@
     right: 0;
     bottom: -1px;
     height: 2px;
-    background: var(--teal-ink);
+    background: var(--ink);
     transform: scaleX(0);
     transition: transform 0.35s var(--ease);
 }
@@ -107,7 +107,7 @@
     min-height: 40px;
     padding: 0 16px;
     font-size: 0.9rem;
-    color: var(--ink-2);
+    color: var(--muted);
     transition: background-color 0.2s, color 0.2s;
 }
 
@@ -117,12 +117,12 @@
 
 .cv__view:hover {
     color: var(--ink);
-    background: var(--paper-2);
+    background: var(--line);
 }
 
 .cv__view[aria-pressed='true'] {
     background: var(--ink);
-    color: var(--paper);
+    color: var(--sky);
 }
 
 .cv__actions {
@@ -136,13 +136,13 @@
     min-height: 44px;
     padding: 0 12px;
     font-size: 0.9rem;
-    color: var(--ink-2);
+    color: var(--muted);
     border-radius: 14px;
     transition: background-color 0.2s, color 0.2s;
 }
 
 .cv__action:hover {
-    background: var(--paper-2);
+    background: var(--line);
     color: var(--ink);
 }
 
@@ -151,14 +151,14 @@
 }
 
 .cv__note {
-    color: var(--ink-2);
+    color: var(--muted);
     margin-bottom: 12px;
 }
 
 .cv__viewport {
     border: 1px solid var(--ink);
     border-radius: 14px;
-    background: var(--paper);
+    background: var(--sky);
     min-height: 320px;
 }
 
@@ -173,7 +173,7 @@
 .cv-code__nums {
     padding: 20px 12px 20px 16px;
     text-align: right;
-    color: var(--ink-2);
+    color: var(--muted);
     border-right: 1px solid var(--line);
     user-select: none;
     /* same size and line-height as the code so numbers stay aligned */
@@ -192,12 +192,12 @@
 }
 
 .cv-comment {
-    color: var(--ink-2);
+    color: var(--muted);
     font-style: italic;
 }
 
 .cv-string {
-    color: var(--teal-ink);
+    color: var(--ink);
 }
 
 .cv-keyword {
@@ -209,7 +209,7 @@
 
 .cv-number,
 .cv-decorator {
-    color: var(--ink-2);
+    color: var(--muted);
     font-weight: 500;
 }
 
@@ -219,11 +219,11 @@
     gap: 12px;
     padding: 12px 20px;
     border-bottom: 1px solid var(--line);
-    color: var(--ink-2);
+    color: var(--muted);
 }
 
 .cv-output__head .is-done {
-    color: var(--teal-ink);
+    color: var(--ink);
 }
 
 .cv-output__body {
@@ -233,7 +233,7 @@
     font-family: var(--font-code);
     font-size: 0.8rem;
     line-height: 1.6;
-    color: var(--ink-2);
+    color: var(--muted);
     white-space: pre;
 }
 
@@ -243,7 +243,7 @@
     place-content: center;
     min-height: 320px;
     padding: 24px;
-    color: var(--ink-2);
+    color: var(--muted);
 }
 
 .cv-progress {
@@ -255,7 +255,7 @@
 .cv-progress span {
     display: block;
     height: 100%;
-    background: var(--teal-ink);
+    background: var(--ink);
     transform-origin: left;
 }
 
@@ -267,7 +267,7 @@
 
 .cv-report-empty {
     padding: 24px;
-    color: var(--ink-2);
+    color: var(--muted);
 }
 
 .cv-stats {
@@ -282,7 +282,7 @@
 }
 
 .cv-stats dt {
-    color: var(--ink-2);
+    color: var(--muted);
 }
 
 .cv-stats dd {
@@ -310,7 +310,7 @@
 }
 
 .cv-checks .mono {
-    color: var(--ink-2);
+    color: var(--muted);
 }
 
 .cv-steps {
@@ -318,7 +318,7 @@
     display: grid;
     gap: 2px;
     padding-left: 20px;
-    color: var(--ink-2);
+    color: var(--muted);
     font-size: 0.85rem;
     list-style: decimal;
 }
@@ -352,7 +352,7 @@
 
 .cv__viewport {
     border-color: var(--line);
-    border-radius: var(--r-card);
+    border-radius: var(--r-lg);
     overflow: hidden;
 }
 
@@ -387,4 +387,9 @@
 .cv__logo {
     height: 28px;
     width: auto;
+}
+
+.cv__back,
+.cv__suite {
+    text-decoration: none;
 }

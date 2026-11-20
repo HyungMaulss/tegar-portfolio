@@ -1,40 +1,34 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import SectionHeader from './SectionHeader';
-import Check from './Check';
+import { reveal } from '../lib/motion';
 import './Experience.css';
 
 export default function Experience() {
     const { t } = useLanguage();
-    const [lead, key] = t.experience.title;
 
     return (
-        <section className="experience section" id="experience">
-            <div className="container">
-                <SectionHeader label={t.experience.label}>
-                    {lead} <Check>{key}</Check>
-                </SectionHeader>
+        <section id="experience" className="section container">
+            <motion.div {...reveal()}>
+                <p className="eyebrow">{t.experience.label}</p>
+                <h2 className="h2">{t.experience.title}</h2>
+            </motion.div>
 
-                <ol className="jobs">
-                    {t.experience.jobs.map((job, i) => (
-                        <motion.li
-                            key={job.company}
-                            className={`job ${job.current ? 'is-current' : ''}`}
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-40px' }}
-                            transition={{ duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            <p className="job__date">{job.date}</p>
-                            <div className="job__main">
-                                <h3 className="job__role">{job.role}</h3>
-                                <p className="job__company">{job.company}, {job.location}</p>
-                            </div>
+            <ol className="timeline">
+                {t.experience.jobs.map((job, i) => (
+                    <motion.li key={job.company} className={`job ${job.current ? 'is-current' : ''}`} {...reveal(i * 0.08)}>
+                        <span className="job__marker" aria-hidden="true" />
+                        <div className="job__head">
+                            <p className="job__date">{job.date} · {job.location}</p>
+                            <h3 className="job__role">{job.role}</h3>
+                            <p className="job__company">{job.company}</p>
+                        </div>
+                        <div className="job__body">
                             <p className="job__summary">{job.summary}</p>
-                        </motion.li>
-                    ))}
-                </ol>
-            </div>
+                            <p className="job__tags">{job.tags.join(' · ')}</p>
+                        </div>
+                    </motion.li>
+                ))}
+            </ol>
         </section>
     );
 }

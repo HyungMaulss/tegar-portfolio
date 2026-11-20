@@ -126,7 +126,7 @@ export default function Chatbot() {
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                 />
-                                <button type="submit" className="btn btn--solid chat__send" disabled={!input.trim() || typing}>{c.send}</button>
+                                <button type="submit" className="btn btn--ink chat__send" disabled={!input.trim() || typing}>{c.send}</button>
                             </div>
                         </form>
                     </motion.section>
