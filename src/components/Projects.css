@@ -25,7 +25,7 @@
     min-height: 320px;
     padding: 28px;
     border-radius: var(--r-lg);
-    border: 1px solid var(--line);
+    border: 1px solid var(--line-2);
     transition: border-color 0.25s, transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 

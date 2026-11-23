@@ -20,10 +20,10 @@
     left: -210px;
     top: -210px;
     border-radius: 50%;
-    border: 2px solid var(--sun);
-    outline: 2px solid var(--sun);
+    border: 2.5px solid var(--ring);
+    outline: 2.5px solid var(--ring);
     outline-offset: 28px;
-    opacity: 0.5;
+    opacity: 0.9;
 }
 
 /* Warm light behind the portrait. */
@@ -43,7 +43,7 @@
     top: 48px;
     width: 220px;
     height: 160px;
-    background: radial-gradient(var(--dot) 1.6px, transparent 1.8px) 0 0 / 20px 20px;
+    background: radial-gradient(var(--dot) 1.8px, transparent 2px) 0 0 / 20px 20px;
     -webkit-mask-image: radial-gradient(closest-side, #000 40%, transparent);
     mask-image: radial-gradient(closest-side, #000 40%, transparent);
 }

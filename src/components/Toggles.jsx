@@ -5,7 +5,7 @@ import './Toggles.css';
 export function ThemeToggle() {
     const { t } = useLanguage();
     // index.html sets data-theme before paint; read it back instead of duplicating the logic.
-    const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'dark');
+    const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'light');
     const next = theme === 'dark' ? 'light' : 'dark';
 
     const toggle = () => {

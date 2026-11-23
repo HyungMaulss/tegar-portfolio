@@ -27,10 +27,10 @@
     width: 260px;
     height: 260px;
     border-radius: 50%;
-    border: 2px solid var(--sun);
-    outline: 2px solid var(--sun);
+    border: 2.5px solid var(--ring);
+    outline: 2.5px solid var(--ring);
     outline-offset: 28px;
-    opacity: 0.5;
+    opacity: 0.9;
     pointer-events: none;
 }
 
@@ -41,7 +41,7 @@
     bottom: -20px;
     width: 240px;
     height: 150px;
-    background: radial-gradient(rgba(244, 246, 255, 0.22) 1.6px, transparent 1.8px) 0 0 / 20px 20px;
+    background: radial-gradient(rgba(244, 246, 255, 0.34) 1.8px, transparent 1.8px) 0 0 / 20px 20px;
     -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent);
     mask-image: radial-gradient(closest-side, #000 35%, transparent);
     pointer-events: none;
