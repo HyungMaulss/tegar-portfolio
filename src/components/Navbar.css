@@ -98,21 +98,9 @@
     font-weight: 600;
 }
 
-.nav__cv {
-    height: 46px;
-    padding: 0 18px;
-    font-size: 15px;
-}
-
 .nav__mobile {
     display: none;
     gap: 8px;
-}
-
-.nav__cv-short {
-    height: 44px;
-    padding: 0 14px;
-    font-size: 15px;
 }
 
 .nav__toggle {

@@ -47,10 +47,38 @@
     pointer-events: none;
 }
 
-.contact__resume {
-    gap: 8px;
+/* Portfolio download: one label, two format buttons. */
+.contact__deck {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
     font-size: 15px;
+    font-weight: 600;
     color: var(--on-panel);
+}
+
+.contact__deck > span {
+    margin-right: auto;
+}
+
+.contact__format {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 0 14px;
+    border-radius: var(--r-sm);
+    border: 1.5px solid var(--on-panel);
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.contact__format:hover {
+    background: var(--sun);
+    border-color: var(--sun);
+    color: var(--on-sun);
 }
 
 .contact__main {

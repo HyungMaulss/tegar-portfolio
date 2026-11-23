@@ -17,7 +17,7 @@ const OFF_TOPIC = [
 
 // Order = priority on equal score. Small talk is last and only used when nothing else matched.
 const INTENTS = [
-    ['cv', ['cv', 'resume', 'curriculum vitae', 'download cv', 'unduh cv']],
+    ['cv', ['cv', 'resume', 'curriculum vitae', 'download cv', 'unduh cv', 'download', 'unduh', 'pdf', 'ppt', 'pptx', 'powerpoint', 'slides', 'deck', 'presentation', 'presentasi']],
     ['hire', ['hire', 'hiring', 'available', 'availability', 'open to work', 'opportunity', 'opportunities', 'recruit', 'freelance', 'rekrut', 'lowongan', 'tersedia', 'peluang', 'kesempatan', 'why should']],
     ['education', ['education', 'university', 'college', 'campus', 'degree', 'major', 'graduate', 'gpa', 'gunadarma', 'study', 'studied', 'pendidikan', 'kuliah', 'kampus', 'universitas', 'jurusan', 'lulusan', 'sarjana', 'ipk', 'gelar']],
     ['location', ['location', 'located', 'live', 'lives', 'based', 'which city', 'where is he', 'lokasi', 'tinggal', 'domisili', 'berdomisili', 'alamat', 'kota']],

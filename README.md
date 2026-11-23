@@ -14,7 +14,8 @@ React 19 + Vite. Three-tone palette from the logo, light/dark theme, EN/ID copy,
 | `npm run build` | Production build into `dist/` |
 | `npm test` | Chatbot intent tests (Node built-in test runner, no extra deps) |
 | `npm run lint` | ESLint |
-| `npm run resume` | Rebuild `public/Tegar-Maulana-Resume.pptx` (7 slides, Morph transitions) from `src/data/`. Run it after changing portfolio content |
+| `npm run resume` | Rebuild `public/Tegar-Maulana-Portfolio.pptx` (7 slides, Morph transitions) from `src/data/`. Run it after changing portfolio content |
+| `npm run resume:pdf` | Export that deck to `public/Tegar-Maulana-Portfolio.pdf` (Windows with PowerPoint installed). Run it after `npm run resume` |
 
 ## Where things live
 

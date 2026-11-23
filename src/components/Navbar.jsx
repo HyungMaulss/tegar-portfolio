@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { profile } from '../data/profile';
 import { ThemeToggle, LanguageSwitch } from './Toggles';
-import { Download, Menu, Close } from './Icons';
+import { Menu, Close } from './Icons';
+import DownloadMenu from './DownloadMenu';
 import Logo from './Logo';
 import './Navbar.css';
 
@@ -53,12 +54,12 @@ export default function Navbar() {
                     <div className="nav__tools">
                         <LanguageSwitch />
                         <ThemeToggle />
-                        <a href={profile.cv} download className="btn btn--sun nav__cv">{t.nav.cv}<Download /></a>
+                        <DownloadMenu />
                     </div>
                 </div>
 
                 <div className="nav__mobile">
-                    <a href={profile.cv} download className="btn btn--sun nav__cv-short">{t.nav.cvShort}</a>
+                    <DownloadMenu className="dl--short" />
                     <button
                         type="button"
                         className="nav__toggle"

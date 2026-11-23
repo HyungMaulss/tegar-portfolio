@@ -8,7 +8,9 @@ export const profile = {
     github: 'https://github.com/HyungMaulss',
     cv: '/CV - Tegar_Maulana.pdf',
     photo: '/tegar.webp',
-    resume: '/Tegar-Maulana-Resume.pptx', // built by `npm run resume`
+    // Portfolio deck: `npm run resume` builds the PPT, `npm run resume:pdf` exports the PDF.
+    deckPdf: '/Tegar-Maulana-Portfolio.pdf',
+    deckPpt: '/Tegar-Maulana-Portfolio.pptx',
 };
 
 // Projects whose test code is readable in the CodeViewer (/code/:id).

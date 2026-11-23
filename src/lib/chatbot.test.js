@@ -18,6 +18,8 @@ const cases = [
     ['How to contact him?', 'contact'],
     ['minta nomor wa', 'contact'],
     ['Can I download his CV?', 'cv'],
+    ['Can I download the portfolio as PDF?', 'cv'],
+    ['ada ppt nya?', 'cv'],
     ['Is he open to work?', 'hire'],
     ['How does he test?', 'approach'],
     ['Show me his projects', 'projects'],

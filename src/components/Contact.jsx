@@ -44,7 +44,11 @@ export default function Contact() {
                         {status === 'copied' ? c.copied : c.copy}
                     </button>
                     <a href={profile.cv} download className="btn contact__cv">{c.cv}</a>
-                    <a href={profile.resume} download className="text-link contact__resume"><Download />{t.nav.resume}</a>
+                    <p className="contact__deck">
+                        <span>{t.nav.deck}</span>
+                        <a href={profile.deckPdf} download aria-label={t.nav.deckPdf} className="contact__format"><Download />PDF</a>
+                        <a href={profile.deckPpt} download aria-label={t.nav.deckPpt} className="contact__format"><Download />PPT</a>
+                    </p>
                     <p className="contact__status" role="status">{status === 'failed' ? c.copyFailed : ''}</p>
                     <ul className="contact__links">
                         {links.map(([label, href]) => (

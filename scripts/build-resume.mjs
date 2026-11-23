@@ -13,7 +13,7 @@ import { profile, skillGroups, sourceIds } from '../src/data/profile.js';
 
 const t = translations.en;
 const here = (p) => fileURLToPath(new URL(p, import.meta.url));
-const OUT = here('../public/Tegar-Maulana-Resume.pptx');
+const OUT = here('../public/Tegar-Maulana-Portfolio.pptx');
 const img = (name) => 'image/png;base64,' + readFileSync(here(`./assets/${name}.png`)).toString('base64');
 
 // Site light theme. Sun is a fill, never text on Sky; text on Sun stays INK.

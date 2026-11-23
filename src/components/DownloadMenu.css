@@ -1,0 +1,64 @@
+.dl {
+    position: relative;
+}
+
+.dl__btn {
+    height: 46px;
+    padding: 0 18px;
+    font-size: 15px;
+}
+
+.dl__menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    z-index: 60;
+    min-width: 250px;
+    padding: 6px;
+    border-radius: var(--r-md);
+    border: 1.5px solid var(--ink);
+    background: var(--sky);
+    box-shadow: 4px 4px 0 var(--ink);
+}
+
+.dl__menu a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 44px;
+    padding: 0 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.dl__menu a:hover,
+.dl__menu a:focus-visible {
+    background: color-mix(in srgb, var(--sun) 40%, transparent);
+}
+
+.dl__format {
+    padding: 2px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--line-2);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+/* Compact trigger in the mobile top bar: text only, so brand and buttons stay on one row. */
+.dl--short .dl__btn {
+    height: 44px;
+    padding: 0 14px;
+}
+
+.dl--short .dl__btn svg {
+    display: none;
+}
+
+.dl--short .dl__menu {
+    max-width: calc(100vw - 32px);
+}
