@@ -7,6 +7,7 @@ export const profile = {
     linkedin: 'https://www.linkedin.com/in/tegarmaulana/',
     github: 'https://github.com/tegarmaulana',
     cv: '/CV - Tegar_Maulana.pdf',
+    photo: '/tegar.webp',
     resume: '/Tegar-Maulana-Resume.pptx', // built by `npm run resume`
 };
 

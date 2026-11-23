@@ -15,6 +15,11 @@
   --line-2: rgba(26, 27, 58, 0.2);
   --panel: #1a1b3a;
   --on-panel: #f4f6ff;
+  /* Background decoration, kept faint so text contrast never depends on it. */
+  --glow-sun: rgba(255, 200, 61, 0.34);
+  --glow-ink: rgba(26, 27, 58, 0.06);
+  --dot: rgba(26, 27, 58, 0.22);
+  --deco-circle: 0.16;
 
   --font-head: 'Bricolage Grotesque', 'Plus Jakarta Sans', sans-serif;
   --font: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif;
@@ -39,6 +44,10 @@
   --line-2: rgba(244, 246, 255, 0.32);
   --panel: #23254f;
   --on-panel: #f4f6ff;
+  --glow-sun: rgba(255, 200, 61, 0.16);
+  --glow-ink: rgba(120, 128, 220, 0.12);
+  --dot: rgba(244, 246, 255, 0.2);
+  --deco-circle: 0.1;
   color-scheme: dark;
 }
 
@@ -61,7 +70,13 @@ body {
   font-size: 18px;
   line-height: 1.65;
   color: var(--ink);
-  background: var(--sky);
+  /* Soft pools of light down the page so long sections never sit on a flat fill. */
+  background:
+    radial-gradient(600px 520px at 4% 34%, var(--glow-ink), transparent 70%),
+    radial-gradient(560px 480px at 98% 52%, var(--glow-sun), transparent 70%),
+    radial-gradient(620px 520px at 2% 74%, var(--glow-sun), transparent 72%),
+    radial-gradient(600px 520px at 96% 92%, var(--glow-ink), transparent 70%),
+    var(--sky);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   transition: background-color 0.4s var(--ease), color 0.4s var(--ease);
@@ -148,7 +163,28 @@ button:disabled {
 }
 
 .section {
+  position: relative;
   padding-top: clamp(88px, 10vw, 136px);
+}
+
+/* A faded patch of dots beside each section heading, alternating sides. */
+.section::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: clamp(48px, 6vw, 88px);
+  right: 0;
+  width: 200px;
+  height: 140px;
+  background: radial-gradient(var(--dot) 1.6px, transparent 1.8px) 0 0 / 20px 20px;
+  -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent);
+  mask-image: radial-gradient(closest-side, #000 35%, transparent);
+  pointer-events: none;
+}
+
+.section:nth-of-type(even)::before {
+  right: auto;
+  left: 0;
 }
 
 /* Section heading: uppercase label + Bricolage title. */

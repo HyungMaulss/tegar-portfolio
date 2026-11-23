@@ -17,7 +17,10 @@ export const translations = {
         lang: { label: 'Language' },
         hero: {
             badge: 'Open to QA roles · Jakarta, Indonesia',
-            hello: 'Hi, I\'m Tegar, a Quality Assurance Engineer.',
+            hello: 'Hi, I\'m',
+            role: 'Quality Assurance Engineer',
+            current: ['Currently', 'QA Engineer at Nusapala Berkah Autonomous'],
+            photoAlt: 'Portrait of Tegar Maulana',
             title: ['I make sure it', 'works', 'before your users find out it doesn\'t.'],
             lede: 'Manual, API, performance and end-to-end testing, with bug reports developers can reproduce on the first try.',
             ctaWork: 'See my projects',
@@ -238,7 +241,10 @@ export const translations = {
         lang: { label: 'Bahasa' },
         hero: {
             badge: 'Terbuka untuk posisi QA · Jakarta, Indonesia',
-            hello: 'Halo, saya Tegar, seorang Quality Assurance Engineer.',
+            hello: 'Halo, saya',
+            role: 'Quality Assurance Engineer',
+            current: ['Saat ini', 'QA Engineer di Nusapala Berkah Autonomous'],
+            photoAlt: 'Foto Tegar Maulana',
             title: ['Saya memastikan semuanya', 'berjalan', 'sebelum pengguna menemukan yang tidak.'],
             lede: 'Pengujian manual, API, performa, dan end-to-end, dengan laporan bug yang bisa langsung direproduksi developer di percobaan pertama.',
             ctaWork: 'Lihat proyek saya',

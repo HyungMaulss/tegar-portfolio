@@ -38,15 +38,14 @@
     transform: rotate(-6deg) scale(1.05);
 }
 
+/* First and last name stacked, like the logo wordmark. */
 .nav__name {
+    display: grid;
     font-family: var(--font-head);
-    font-size: 19px;
+    font-size: 17px;
     font-weight: 700;
+    line-height: 1.05;
     letter-spacing: -0.01em;
-}
-
-.nav__name--short {
-    display: none;
 }
 
 .nav__menu {
@@ -128,12 +127,7 @@
     }
 
     .nav__name {
-        display: none;
-    }
-
-    .nav__name--short {
-        display: inline;
-        font-size: 17px;
+        font-size: 16px;
     }
 
     .nav__brand .logo {

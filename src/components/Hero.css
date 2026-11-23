@@ -1,15 +1,80 @@
-.hero {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 56px 72px;
-    padding-top: clamp(28px, 3.5vw, 48px);
-    padding-bottom: 56px;
+/* Hero + quick facts share one wrapper so the background shapes span both. */
+.hero-wrap {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-bottom: 8px;
 }
 
-.hero__text {
-    flex: 1 1 520px;
-    min-width: 0;
+/* ---------- Background shapes ---------- */
+.hero-deco {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero-deco__circle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--sun);
+    opacity: var(--deco-circle, 0.14);
+}
+
+.hero-deco__circle--tl {
+    width: 360px;
+    height: 360px;
+    left: -200px;
+    top: -200px;
+}
+
+.hero-deco__circle--br {
+    width: 440px;
+    height: 440px;
+    right: -240px;
+    bottom: 80px;
+    background: none;
+    border: 56px solid var(--sun);
+}
+
+/* Warm light behind the portrait. */
+.hero-deco__glow {
+    position: absolute;
+    width: 760px;
+    height: 760px;
+    right: -120px;
+    top: -140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--glow-sun) 0%, transparent 62%);
+}
+
+.hero-deco__dots {
+    position: absolute;
+    width: 220px;
+    height: 160px;
+    background: radial-gradient(var(--dot) 1.6px, transparent 1.8px) 0 0 / 20px 20px;
+    -webkit-mask-image: radial-gradient(closest-side, #000 40%, transparent);
+    mask-image: radial-gradient(closest-side, #000 40%, transparent);
+}
+
+.hero-deco__dots--a {
+    right: 4%;
+    top: 40px;
+}
+
+.hero-deco__dots--b {
+    left: 38%;
+    bottom: 150px;
+}
+
+/* ---------- Layout ---------- */
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: center;
+    gap: 40px 56px;
+    padding-top: clamp(28px, 3.5vw, 48px);
+    padding-bottom: 48px;
 }
 
 .hero__badge {
@@ -19,6 +84,7 @@
     padding: 8px 14px;
     border-radius: 8px;
     border: 1px solid var(--line);
+    background: color-mix(in srgb, var(--sky) 70%, transparent);
     font-size: 15px;
     font-weight: 600;
 }
@@ -32,128 +98,240 @@
 }
 
 .hero__hello {
-    margin-top: 28px;
+    margin-top: 26px;
     font-size: 20px;
     font-weight: 600;
+    color: var(--muted);
+}
+
+/* First and last name on their own lines. */
+.hero__name {
+    margin-top: 4px;
+    font-family: var(--font-head);
+    font-size: clamp(60px, 7.6vw, 112px);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+}
+
+.hero__name > span {
+    display: block;
+}
+
+.hero__dot {
+    color: var(--sun);
+}
+
+.hero__role {
+    margin-top: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-head);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.hero__role::before {
+    content: '';
+    width: 32px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--sun);
 }
 
 .hero__title {
-    margin-top: 12px;
+    margin-top: 14px;
+    max-width: 26ch;
     font-family: var(--font-head);
-    font-size: clamp(44px, 5.8vw, 80px);
-    font-weight: 800;
-    line-height: 1.02;
-    letter-spacing: -0.035em;
+    font-size: clamp(24px, 2.4vw, 32px);
+    font-weight: 700;
+    line-height: 1.22;
+    letter-spacing: -0.02em;
 }
 
 .hero__lede {
-    margin-top: 24px;
+    margin-top: 16px;
     max-width: 46ch;
-    font-size: 19px;
+    font-size: 18px;
     color: var(--muted);
 }
 
 .hero__cta {
-    margin-top: 32px;
+    margin-top: 28px;
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
 }
 
 .hero__resume {
-    margin-top: 14px;
+    margin-top: 12px;
     gap: 8px;
     font-size: 16px;
 }
 
-/* Release checklist card: a Sun surface with an ink border, the hero's focal object. */
-.checklist {
-    flex: 0 1 460px;
-    min-width: 0;
-    padding: 32px;
+/* ---------- Portrait ---------- */
+.hero__visual {
+    position: relative;
+    justify-self: center;
+    width: min(100%, 470px);
+    padding-top: 12px;
+}
+
+/* Tilted Sun card behind the portrait, with the site's hard ink shadow. */
+.hero__shape,
+.hero__outline {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    top: 16%;
+    bottom: 4%;
     border-radius: var(--r-lg);
+    transform: rotate(-6deg);
+    transition: transform 0.6s var(--ease), box-shadow 0.6s var(--ease);
+}
+
+.hero__shape {
     background: var(--sun);
-    color: var(--on-sun);
     border: 1.5px solid var(--on-sun);
-    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+    box-shadow: 10px 10px 0 var(--ink);
 }
 
-.checklist:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 8px 8px 0 var(--ink);
+.hero__outline {
+    border: 1.5px solid var(--line-2);
+    transform: rotate(4deg) translate(14px, -10px);
 }
 
-.checklist__head {
+.hero__visual:hover .hero__shape {
+    transform: rotate(-3deg) translate(-4px, -4px);
+    box-shadow: 14px 14px 0 var(--ink);
+}
+
+.hero__visual:hover .hero__outline {
+    transform: rotate(7deg) translate(20px, -14px);
+}
+
+.hero__spark {
+    position: absolute;
+    left: -2%;
+    top: 6%;
+    width: 56px;
+    height: 56px;
+    fill: none;
+    stroke: var(--sun);
+    stroke-width: 3.5;
+    stroke-linecap: round;
+}
+
+.hero__photo {
+    position: relative;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 24px 32px rgba(10, 11, 30, 0.28));
+    /* Fade the bottom so the crop line never shows. */
+    -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+}
+
+/* Floating cards over the portrait. */
+.float {
+    position: absolute;
+    z-index: 1;
+    border-radius: var(--r-md);
+    border: 1.5px solid var(--ink);
+    background: var(--sky);
+    color: var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    font-size: 14px;
+    line-height: 1.35;
+    animation: float-y 6s ease-in-out infinite alternate;
+}
+
+.float__label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.float--current {
+    top: 20%;
+    right: -6%;
+    max-width: 230px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 14px;
+    font-weight: 700;
+}
+
+.float--current .tick {
+    flex: 0 0 auto;
+}
+
+.float--check {
+    bottom: 12%;
+    left: -8%;
+    width: 230px;
+    display: grid;
+    gap: 8px;
+    padding: 14px 16px;
+    text-decoration: none;
+    animation-delay: -3s;
+    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.float--check:hover {
+    animation-play-state: paused;
+    box-shadow: 6px 6px 0 var(--sun);
+}
+
+.float__row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 12px;
+    gap: 10px;
 }
 
-.checklist__title {
+.float__row strong {
     font-family: var(--font-head);
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-}
-
-.checklist__progress {
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.checklist__list {
-    margin-top: 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.checklist__item {
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(26, 27, 58, 0.16);
-}
-
-.checklist__item svg {
-    flex: 0 0 auto;
-    margin-top: 2px;
-}
-
-.checklist__item--open {
-    border-bottom: 0;
-    align-items: center;
-}
-
-.checklist__item--open svg {
-    margin-top: 0;
-}
-
-.checklist__item .text-link {
-    color: var(--on-sun);
-}
-
-.checklist__sub {
     font-size: 15px;
 }
 
-/* Each tick draws itself in, one after another, after the card lands. */
-.tick__mark {
-    stroke-dasharray: 16;
-    stroke-dashoffset: 16;
-    animation: tick 0.5s var(--ease) forwards;
-    animation-delay: calc(0.9s + var(--i, 0) * 0.18s);
+.float__bar {
+    display: block;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--line);
+    overflow: hidden;
 }
 
-@keyframes tick {
-    to {
-        stroke-dashoffset: 0;
-    }
+.float__bar span {
+    display: block;
+    width: 80%;
+    height: 100%;
+    border-radius: 3px;
+    background: var(--sun);
+    transform-origin: left;
+    animation: bar-fill 1.4s var(--ease) 0.9s both;
 }
 
-/* Quick facts for recruiters. */
+.float__next {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+@keyframes float-y {
+    to { translate: 0 -10px; }
+}
+
+@keyframes bar-fill {
+    from { transform: scaleX(0); }
+}
+
+/* ---------- Quick facts ---------- */
 .facts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -164,6 +342,9 @@
     padding: 22px 24px;
     border-radius: var(--r-md);
     border: 1px solid var(--line);
+    background: color-mix(in srgb, var(--sky) 72%, transparent);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
     transition: border-color 0.25s, transform 0.25s var(--ease);
 }
 
@@ -184,10 +365,24 @@
     line-height: 1.4;
 }
 
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero__visual {
+        width: min(100%, 400px);
+    }
+
+    .hero-deco__dots--b {
+        display: none;
+    }
+}
+
 @media (max-width: 600px) {
     .hero {
         padding-top: 24px;
-        gap: 32px;
+        gap: 28px;
     }
 
     .hero__badge {
@@ -195,13 +390,20 @@
     }
 
     .hero__hello {
-        margin-top: 22px;
+        margin-top: 20px;
         font-size: 17px;
     }
 
+    .hero__name {
+        font-size: 64px;
+    }
+
+    .hero__role {
+        font-size: 19px;
+    }
+
     .hero__title {
-        font-size: 42px;
-        line-height: 1.04;
+        font-size: 23px;
     }
 
     .hero__lede {
@@ -216,13 +418,36 @@
         width: 100%;
     }
 
-    .checklist {
-        padding: 24px;
-        border-radius: 18px;
+    .hero__visual {
+        width: 92%;
     }
 
-    .checklist__title {
-        font-size: 22px;
+    /* Keep both cards on the shirt, clear of the face. */
+    .float--current {
+        top: auto;
+        bottom: 30%;
+        right: -6%;
+        max-width: 190px;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .float--check {
+        bottom: 2%;
+        left: -6%;
+        width: 196px;
+        padding: 12px 14px;
+    }
+
+    .float__row .float__label {
+        white-space: nowrap;
+    }
+
+    .hero-deco__circle--tl {
+        width: 240px;
+        height: 240px;
+        left: -140px;
+        top: -140px;
     }
 
     .facts {

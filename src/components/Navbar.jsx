@@ -39,8 +39,9 @@ export default function Navbar() {
             <nav className="nav__inner container" aria-label="Primary">
                 <a href="#top" className="nav__brand" aria-label={t.nav.home} onClick={close}>
                     <Logo variant="mark" title="" />
-                    <span className="nav__name">{profile.name}</span>
-                    <span className="nav__name nav__name--short" aria-hidden="true">Tegar</span>
+                    <span className="nav__name">
+                        {profile.name.split(' ').map((part) => <span key={part}>{part}</span>)}
+                    </span>
                 </a>
 
                 <div id="nav-menu" className="nav__menu">
