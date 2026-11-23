@@ -5,7 +5,7 @@ export const profile = {
     phone: '+62 877 4125 3866',
     whatsapp: 'https://wa.me/6287741253866',
     linkedin: 'https://www.linkedin.com/in/tegarmaulana/',
-    github: 'https://github.com/tegarmaulana',
+    github: 'https://github.com/HyungMaulss',
     cv: '/CV - Tegar_Maulana.pdf',
     photo: '/tegar.webp',
     resume: '/Tegar-Maulana-Resume.pptx', // built by `npm run resume`
