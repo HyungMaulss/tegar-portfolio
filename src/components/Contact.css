@@ -13,6 +13,44 @@
     gap: 40px;
     align-items: flex-end;
     justify-content: space-between;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+/* Decoration only: a Sun ring in the corner and a faded dot patch. */
+.contact__ring {
+    position: absolute;
+    z-index: -1;
+    right: -150px;
+    top: -190px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 2px solid var(--sun);
+    outline: 2px solid var(--sun);
+    outline-offset: 28px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.contact__dots {
+    position: absolute;
+    z-index: -1;
+    left: 38%;
+    bottom: -20px;
+    width: 240px;
+    height: 150px;
+    background: radial-gradient(rgba(244, 246, 255, 0.22) 1.6px, transparent 1.8px) 0 0 / 20px 20px;
+    -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent);
+    mask-image: radial-gradient(closest-side, #000 35%, transparent);
+    pointer-events: none;
+}
+
+.contact__resume {
+    gap: 8px;
+    font-size: 15px;
+    color: var(--on-panel);
 }
 
 .contact__main {
@@ -23,7 +61,7 @@
 .contact__title {
     margin-top: 14px;
     font-family: var(--font-head);
-    font-size: clamp(38px, 5vw, 68px);
+    font-size: clamp(34px, 4vw, 54px);
     font-weight: 800;
     line-height: 1.02;
     letter-spacing: -0.035em;

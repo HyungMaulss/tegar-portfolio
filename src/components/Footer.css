@@ -1,13 +1,42 @@
 .footer {
-    padding-top: 8px;
-    padding-bottom: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding-top: 20px;
+    /* room for the floating back-to-top and chat buttons */
+    padding-bottom: 100px;
+    /* Top rule aligned with the content, not the container padding. */
+    background: linear-gradient(var(--line), var(--line)) center top / calc(100% - 2 * var(--gutter)) 1px no-repeat;
     font-size: 15px;
     color: var(--muted);
 }
 
+.footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer__brand .logo {
+    width: 34px;
+    height: 21px;
+    color: var(--ink);
+}
+
+.footer__links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer__links .text-link {
+    font-size: 15px;
+    color: var(--ink);
+}
+
 @media (max-width: 600px) {
     .footer {
-        /* room for the floating back-to-top and chat buttons */
         padding-bottom: 150px;
     }
 }

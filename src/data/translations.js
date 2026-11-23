@@ -19,10 +19,8 @@ export const translations = {
             badge: 'Open to QA roles · Jakarta, Indonesia',
             hello: 'Hi, I\'m',
             role: 'Quality Assurance Engineer',
-            current: ['Currently', 'QA Engineer at Nusapala Berkah Autonomous'],
             photoAlt: 'Portrait of Tegar Maulana',
             title: ['I make sure it', 'works', 'before your users find out it doesn\'t.'],
-            lede: 'Manual, API, performance and end-to-end testing, with bug reports developers can reproduce on the first try.',
             ctaWork: 'See my projects',
             ctaContact: 'Get in touch',
             checklist: {
@@ -54,6 +52,7 @@ export const translations = {
         experience: {
             label: 'Experience',
             title: 'Where I have worked',
+            now: 'Now',
             jobs: [
                 {
                     current: true,
@@ -97,6 +96,7 @@ export const translations = {
             featured: 'Featured',
             source: 'View the code',
             sourceShort: 'View code',
+            sampleRun: 'Sample run',
             items: [
                 {
                     id: 'cypress',
@@ -243,10 +243,8 @@ export const translations = {
             badge: 'Terbuka untuk posisi QA · Jakarta, Indonesia',
             hello: 'Halo, saya',
             role: 'Quality Assurance Engineer',
-            current: ['Saat ini', 'QA Engineer di Nusapala Berkah Autonomous'],
             photoAlt: 'Foto Tegar Maulana',
             title: ['Saya memastikan semuanya', 'berjalan', 'sebelum pengguna menemukan yang tidak.'],
-            lede: 'Pengujian manual, API, performa, dan end-to-end, dengan laporan bug yang bisa langsung direproduksi developer di percobaan pertama.',
             ctaWork: 'Lihat proyek saya',
             ctaContact: 'Hubungi saya',
             checklist: {
@@ -278,6 +276,7 @@ export const translations = {
         experience: {
             label: 'Pengalaman',
             title: 'Tempat saya bekerja',
+            now: 'Sekarang',
             jobs: [
                 {
                     current: true,
@@ -321,6 +320,7 @@ export const translations = {
             featured: 'Unggulan',
             source: 'Lihat kodenya',
             sourceShort: 'Lihat kode',
+            sampleRun: 'Contoh run',
             items: [
                 {
                     id: 'cypress',

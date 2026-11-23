@@ -6,6 +6,35 @@ import { reveal } from '../lib/motion';
 import { ArrowRight } from './Icons';
 import './Projects.css';
 
+// Same replayed run the code viewer shows for the Cypress suite (src/data/codeSnippets.jsx).
+const RUN = [
+    ['should login with valid credentials', '1.8s', ['POST /api/auth/login → 200 OK', 'Redirected to /dashboard', 'Welcome message verified']],
+    ['should add item to cart', '2.3s', ['Login via API → 200 OK', 'Navigated to /products', 'Added to cart → badge shows "1"']],
+];
+
+function Run({ label }) {
+    return (
+        <div className="run" aria-label={`${label}: cypress-e2e.cy.js, 2 passing`}>
+            <p className="run__head"><span>cypress-e2e.cy.js</span><span>{label}</span></p>
+            <ul className="run__lines" aria-hidden="true">
+                {RUN.map(([name, time, steps], i) => (
+                    <motion.li
+                        key={name}
+                        initial={{ opacity: 0, x: -8 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: 0.3 + i * 0.4 }}
+                    >
+                        <p className="run__test"><span className="run__ok">✓</span>{name}<span className="run__time">{time}</span></p>
+                        {steps.map((step) => <p key={step} className="run__step">↳ {step}</p>)}
+                    </motion.li>
+                ))}
+            </ul>
+            <p className="run__sum" aria-hidden="true"><span className="run__ok">2 passing</span> · 0 failing<span className="run__time">4.1s</span></p>
+        </div>
+    );
+}
+
 export default function Projects() {
     const { t } = useLanguage();
     const p = t.projects;
@@ -31,7 +60,7 @@ export default function Projects() {
                                     <span className="card__badge">{p.featured} · {item.type}</span>
                                     <span>{item.tags.join(' · ')}</span>
                                 </div>
-                                <div className="card__spacer" />
+                                <Run label={p.sampleRun} />
                                 <h3 className="card__title card__title--feat">{item.title}</h3>
                                 <p className="card__desc">{item.desc}</p>
                                 {hasSource && <Link to={`/code/${item.id}`} className="btn btn--ink card__btn">{p.source}<ArrowRight /></Link>}

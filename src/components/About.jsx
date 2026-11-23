@@ -21,12 +21,12 @@ export default function About() {
             <motion.div className="toolbox" {...reveal(0.12)}>
                 <p className="toolbox__title">{t.about.toolbox}</p>
                 <div className="toolbox__groups">
-                    {skillGroups.map((g, gi) => (
-                        <div key={g.key}>
+                    {skillGroups.map((g) => (
+                        <div key={g.key} className="toolbox__row">
                             <p className="toolbox__group">{t.skills.groups[g.key]}</p>
                             <ul className="toolbox__chips">
                                 {g.tools.map((tool) => (
-                                    <li key={tool.name} className={`chip ${gi === 0 ? 'chip--sun' : ''}`}>{tool.name}</li>
+                                    <li key={tool.name} className="chip">{tool.name}</li>
                                 ))}
                             </ul>
                         </div>

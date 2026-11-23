@@ -19,7 +19,6 @@
   --glow-sun: rgba(255, 200, 61, 0.34);
   --glow-ink: rgba(26, 27, 58, 0.06);
   --dot: rgba(26, 27, 58, 0.22);
-  --deco-circle: 0.16;
 
   --font-head: 'Bricolage Grotesque', 'Plus Jakarta Sans', sans-serif;
   --font: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif;
@@ -47,7 +46,6 @@
   --glow-sun: rgba(255, 200, 61, 0.16);
   --glow-ink: rgba(120, 128, 220, 0.12);
   --dot: rgba(244, 246, 255, 0.2);
-  --deco-circle: 0.1;
   color-scheme: dark;
 }
 
@@ -198,7 +196,7 @@ button:disabled {
 .h2 {
   margin-top: 14px;
   font-family: var(--font-head);
-  font-size: clamp(34px, 3.8vw, 52px);
+  font-size: clamp(32px, 3.3vw, 46px);
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.03em;

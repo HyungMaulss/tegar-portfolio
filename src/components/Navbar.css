@@ -2,7 +2,10 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background: var(--sky);
+    /* Frosted bar: the page's background shapes show through softly. */
+    background: color-mix(in srgb, var(--sky) 82%, transparent);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
     transition: box-shadow 0.3s var(--ease), background-color 0.4s var(--ease);
 }

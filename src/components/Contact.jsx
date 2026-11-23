@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { profile } from '../data/profile';
 import { reveal } from '../lib/motion';
+import { Download } from './Icons';
 import './Contact.css';
 
 export default function Contact() {
@@ -30,6 +31,8 @@ export default function Contact() {
     return (
         <section id="contact" className="section container contact">
             <motion.div className="contact__panel" {...reveal()}>
+                <span className="contact__ring" aria-hidden="true" />
+                <span className="contact__dots" aria-hidden="true" />
                 <div className="contact__main">
                     <p className="eyebrow">{c.label}</p>
                     <h2 className="contact__title">{lead} <span className="contact__accent">{accent}</span></h2>
@@ -41,7 +44,7 @@ export default function Contact() {
                         {status === 'copied' ? c.copied : c.copy}
                     </button>
                     <a href={profile.cv} download className="btn contact__cv">{c.cv}</a>
-                    <a href={profile.resume} download className="btn contact__cv">{t.nav.resume}</a>
+                    <a href={profile.resume} download className="text-link contact__resume"><Download />{t.nav.resume}</a>
                     <p className="contact__status" role="status">{status === 'failed' ? c.copyFailed : ''}</p>
                     <ul className="contact__links">
                         {links.map(([label, href]) => (
