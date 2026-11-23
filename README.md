@@ -1,5 +1,9 @@
 # Tegar Maulana · QA Engineer portfolio
 
+**Live:** [tegarmaulana-portfolio.vercel.app](https://tegarmaulana-portfolio.vercel.app)
+
+My portfolio as a Quality Assurance Engineer: experience, projects, and readable samples of my Cypress, Playwright, Selenium and K6 test suites with a replayed run.
+
 React 19 + Vite. Three-tone palette from the logo, light/dark theme, EN/ID copy, a portfolio-only chat assistant, and a code viewer for the test framework samples.
 
 ## Scripts
